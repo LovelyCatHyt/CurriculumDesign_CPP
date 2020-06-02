@@ -1,0 +1,14 @@
+{
+    "bgColor": {
+        "b": true,
+        "g": true,
+        "i": true,
+        "r": true
+    },
+    "fgColor": {
+        "b": false,
+        "g": false,
+        "i": false,
+        "r": false
+    }
+}

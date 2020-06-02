@@ -13,10 +13,69 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\ColorfulConsole">
+      <UniqueIdentifier>{c2e872de-97bc-45a3-944f-364022bf657e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\ColorfulConsole">
+      <UniqueIdentifier>{ee6281df-5d98-4bde-b7cf-c2b7ae636f59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CurriculumDesign_CPP.cpp">
+    <ClCompile Include="ColorfulConsole\Color.cpp">
+      <Filter>源文件\ColorfulConsole</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorfulConsole\ForeColorProxy.cpp">
+      <Filter>源文件\ColorfulConsole</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorfulConsole\GlobalEnvironment.cpp">
+      <Filter>源文件\ColorfulConsole</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorfulConsole\TextAttribute.cpp">
+      <Filter>源文件\ColorfulConsole</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorfulConsole\TextAttrSetter.cpp">
+      <Filter>源文件\ColorfulConsole</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorwithJSON.h">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorwithJSON.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FileIO.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ColorfulConsole\TextAttrSetter.h">
+      <Filter>头文件\ColorfulConsole</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorfulConsole\Color.h">
+      <Filter>头文件\ColorfulConsole</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorfulConsole\ForeColorProxy.h">
+      <Filter>头文件\ColorfulConsole</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorfulConsole\GlobalEnvironment.h">
+      <Filter>头文件\ColorfulConsole</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorfulConsole\TextAttribute.h">
+      <Filter>头文件\ColorfulConsole</Filter>
+    </ClInclude>
+    <ClInclude Include="json\json.hpp">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FileIO.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
