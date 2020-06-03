@@ -33,7 +33,7 @@ namespace Hyt
 		//与用户进行交互, 输入数据
 		void Input(const bool& useOutput = false);
 		//输出数据到cout
-		void Output();
+		void Output(const bool& withTag);
 		friend void to_json(json& j, const PolyFuncData& data);
 		friend void from_json(const json& j, PolyFuncData& data);
 	};
