@@ -28,12 +28,6 @@
     <Filter Include="源文件\json">
       <UniqueIdentifier>{a659799c-0673-492a-b99f-ec8eeae7ce7b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\Toolkit">
-      <UniqueIdentifier>{1b0b3634-d84f-4dd8-bd5d-4581adab09ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Toolkit">
-      <UniqueIdentifier>{afdf6d63-e1e0-4ac4-9895-11d542e59c15}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColorfulConsole\Color.cpp">
@@ -81,21 +75,6 @@
     <ClCompile Include="QueryFlow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Toolkit\Coordinate.c">
-      <Filter>源文件\Toolkit</Filter>
-    </ClCompile>
-    <ClCompile Include="Toolkit\KeyCtrl.c">
-      <Filter>源文件\Toolkit</Filter>
-    </ClCompile>
-    <ClCompile Include="Toolkit\MenuMgr.c">
-      <Filter>源文件\Toolkit</Filter>
-    </ClCompile>
-    <ClCompile Include="Toolkit\MsgBox.c">
-      <Filter>源文件\Toolkit</Filter>
-    </ClCompile>
-    <ClCompile Include="Toolkit\ColorfulConsoler.c">
-      <Filter>源文件\Toolkit</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorfulConsole\TextAttrSetter.h">
@@ -136,24 +115,6 @@
     </ClInclude>
     <ClInclude Include="QueryFlow.h">
       <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Toolkit\Coordinate.h">
-      <Filter>头文件\Toolkit</Filter>
-    </ClInclude>
-    <ClInclude Include="Toolkit\KeyCtrl.h">
-      <Filter>头文件\Toolkit</Filter>
-    </ClInclude>
-    <ClInclude Include="Toolkit\MenuMgr.h">
-      <Filter>头文件\Toolkit</Filter>
-    </ClInclude>
-    <ClInclude Include="Toolkit\MsgBox.h">
-      <Filter>头文件\Toolkit</Filter>
-    </ClInclude>
-    <ClInclude Include="Toolkit\ColorfulConsoler.h">
-      <Filter>头文件\Toolkit</Filter>
-    </ClInclude>
-    <ClInclude Include="Toolkit\Toolkit.h">
-      <Filter>头文件\Toolkit</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
