@@ -1,20 +1,28 @@
 #include "PolyFuncData.h"
 #include <vector>								//vector
 #include <iostream>								//cout
-#include "ColorfulConsole/ForeColorProxy.h"		//ForeColorProxy
-#include "ColorfulConsole/GlobalEnvironment.h"	//GlobalEnvironment
+#include <iomanip>								//setw
+#include <stdlib.h>								//rand, srand, time
+#include "ColorfulConsole/CloEscString.h"		//ces
+#include "polyfit/polyfit.h"					//polyfit
 
 using std::vector;
+using std::cout;
+using std::cin;
+using namespace ColorfulConsole;
+
 namespace Hyt
 {
 	PolyFuncData::PolyFuncData(const double& xmin, const double& xmax, uint count) : xmin(xmin), xmax(xmax), rms(0)
 	{
 		argsList = vector<double>(count);
-		fitArgsList = vector<double>(argsList.size());
+		samples_X = vector<double>(0);
+		samples_Y = vector<double>(0);
 	}
 	PolyFuncData::PolyFuncData(const vector<double>& argsList, const double& xmin, const double& xmax) : argsList(argsList), xmin(xmin), xmax(xmax), rms(0)
 	{
-		fitArgsList = vector<double>(argsList.size());
+		samples_X = vector<double>(0);
+		samples_Y = vector<double>(0);
 	}
 	double PolyFuncData::GetValue(double x)
 	{
@@ -38,21 +46,14 @@ namespace Hyt
 	}
 	void PolyFuncData::Input(const bool& useOutput)
 	{
-		//先定义一堆简写
-		using std::cout;
-		using std::cin;
-		using namespace ColorfulConsole;
-		using FCP = ForeColorProxy;
-		using GloEnv = GlobalEnvironment;
-		
-		if(useOutput) cout << "请输入多项式的项数:\n>";
+		if (useOutput) cout << "请输入多项式的项数:\n>";
 		uint count;
 		cin >> count;
-		if(useOutput) cout << "请输入定义域的" << FCP::LIGHTBLUE << "最小值" << GloEnv::GetFore() << "和" << FCP::LIGHTBLUE << "最大值" << GloEnv::GetFore() << ":\n>";
+		if (useOutput) cout << ces << "请输入定义域的&1最小值&r和&1最大值&r:\n>";
 		cin >> xmin >> xmax;
 		//Input All
 		argsList.clear();
-		if (useOutput) cout << "请输入" << FCP::LIGHTBLUE << count << GloEnv::GetFore() << "个参数:\n>";
+		if (useOutput) cout << ces << "请输入&1" << count << ces << "&r个参数:\n>";
 		for (int i = 0; i < count; i++)
 		{
 			double temp;
@@ -61,9 +62,48 @@ namespace Hyt
 		}
 		if (useOutput) cout << count << "个参数已输入完毕.\n";
 	}
-	void PolyFuncData::Output(const bool& withTag)
+	void PolyFuncData::GenerateSamples(uint count)
 	{
-		//TODO
+		//清除样本
+		samples_X.clear(); samples_Y.clear();
+		srand(time(0));
+		double step = (xmax - xmin) / count;
+		cout << ces << "&1Samples generating...&r\n";
+		for (double x = xmin; x < xmax; x += step)
+		{
+			double r = rand() / 32768.0 - 0.5;
+			samples_X.push_back(x);
+			samples_Y.push_back(GetValue(x) + r);
+			cout << x << ' ' << (GetValue(x) + r) << '\n';
+		}
+		vector<double> fitargs(argsList.size());
+		//调用一个轮子进行参数辨识 注意这里的order是指阶数, "y=x+1" 阶数为1
+		polyfit(samples_X.begin()._Ptr, samples_Y.begin()._Ptr, count, argsList.size() - 1, fitargs.begin()._Ptr);
+		//Debug
+		for (int i = 0; i < fitargs.size(); i++)
+		{
+			cout << i << ' ' << fitargs[i] << '\n';
+		}
+	}
+	void PolyFuncData::Output(const bool& withTag, const DetailLevel& level)
+	{
+		if (withTag) cout << ces << "项数 &2最小值    &4最大值&r\n";
+		using std::setw;
+		cout << std::left << setw(5) << argsList.size() << setw(10) << xmin << setw(10) << xmax;
+		switch (level)
+		{
+		case DetailLevel::Default:
+			if (withTag) 
+			{
+				cout << "系数列表:\n";
+				for (int i = 0; i < argsList.size(); i++)
+				{
+					cout << ces('8') << (i + 1) << ' ' << ces('r') << setw(8) << argsList[i] << '\n';
+				}
+			}
+			break;
+		}
+		cout << '\n';
 	}
 	void to_json(nlohmann::json& j, const PolyFuncData& data)
 	{
@@ -71,7 +111,9 @@ namespace Hyt
 			{"xmin",data.xmin},
 			{"xmax",data.xmax},
 			{"argsList",data.argsList},
-			{"fitArgsList",data.fitArgsList},
+			//{"fitArgsList",data.fitArgsList},
+			{"samples_X",data.samples_X},
+			{"samples_Y",data.samples_Y},
 			{"rms",data.rms}
 		};
 	}
@@ -80,7 +122,9 @@ namespace Hyt
 		data.xmin = j["xmin"];
 		data.xmax = j["xmax"];
 		j.at("argsList").get_to<vector<double>>(data.argsList);
-		j.at("fitArgsList").get_to<vector<double>>(data.fitArgsList);
+		//j.at("fitArgsList").get_to<vector<double>>(data.fitArgsList);
+		j.at("samples_X").get_to<vector<double>>(data.samples_X);
+		j.at("samples_Y").get_to<vector<double>>(data.samples_Y);
 		data.rms = j["rms"];
 	}
 	double GetPolyFuncValue(double x, vector<double> argList, int startTerm)

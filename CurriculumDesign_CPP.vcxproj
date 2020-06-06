@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ColorfulConsole\CloEscString.cpp" />
     <ClCompile Include="ColorfulConsole\Color.cpp" />
     <ClCompile Include="ColorfulConsole\ForeColorProxy.cpp" />
     <ClCompile Include="ColorfulConsole\GlobalEnvironment.cpp" />
@@ -156,20 +157,27 @@
     <ClCompile Include="ColorwithJSON.cpp" />
     <ClCompile Include="ColorwithJSON.h" />
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="DataMgr.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="polyfit\polyfit.c" />
     <ClCompile Include="PolyFuncData.cpp" />
+    <ClCompile Include="QueryFlow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ColorfulConsole\CloEscString.h" />
     <ClInclude Include="ColorfulConsole\Color.h" />
     <ClInclude Include="ColorfulConsole\ForeColorProxy.h" />
     <ClInclude Include="ColorfulConsole\GlobalEnvironment.h" />
     <ClInclude Include="ColorfulConsole\TextAttribute.h" />
     <ClInclude Include="ColorfulConsole\TextAttrSetter.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="DataMgr.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="json\json.hpp" />
+    <ClInclude Include="polyfit\polyfit.h" />
     <ClInclude Include="PolyFuncData.h" />
+    <ClInclude Include="QueryFlow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

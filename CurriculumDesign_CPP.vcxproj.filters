@@ -19,6 +19,15 @@
     <Filter Include="源文件\ColorfulConsole">
       <UniqueIdentifier>{ee6281df-5d98-4bde-b7cf-c2b7ae636f59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\polyfit">
+      <UniqueIdentifier>{0e12e31f-1d9f-4ab5-b65a-2c45f8a7869f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\polyfit">
+      <UniqueIdentifier>{7346c350-879e-46e9-91a5-9535316eed51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\json">
+      <UniqueIdentifier>{a659799c-0673-492a-b99f-ec8eeae7ce7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColorfulConsole\Color.cpp">
@@ -54,6 +63,18 @@
     <ClCompile Include="PolyFuncData.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ColorfulConsole\CloEscString.cpp">
+      <Filter>源文件\ColorfulConsole</Filter>
+    </ClCompile>
+    <ClCompile Include="polyfit\polyfit.c">
+      <Filter>源文件\polyfit</Filter>
+    </ClCompile>
+    <ClCompile Include="DataMgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="QueryFlow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorfulConsole\TextAttrSetter.h">
@@ -71,9 +92,6 @@
     <ClInclude Include="ColorfulConsole\TextAttribute.h">
       <Filter>头文件\ColorfulConsole</Filter>
     </ClInclude>
-    <ClInclude Include="json\json.hpp">
-      <Filter>源文件</Filter>
-    </ClInclude>
     <ClInclude Include="Config.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -81,6 +99,21 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="PolyFuncData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorfulConsole\CloEscString.h">
+      <Filter>头文件\ColorfulConsole</Filter>
+    </ClInclude>
+    <ClInclude Include="polyfit\polyfit.h">
+      <Filter>头文件\polyfit</Filter>
+    </ClInclude>
+    <ClInclude Include="json\json.hpp">
+      <Filter>源文件\json</Filter>
+    </ClInclude>
+    <ClInclude Include="DataMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryFlow.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
