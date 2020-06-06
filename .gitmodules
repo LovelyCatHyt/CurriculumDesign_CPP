@@ -1,3 +1,6 @@
 [submodule "ColorfulConsole"]
 	path = ColorfulConsole
 	url = https://github.com/LovelyCatHyt/ColorfulConsole
+[submodule "polyfit"]
+	path = polyfit
+	url = https://github.com/natedomin/polyfit.git
