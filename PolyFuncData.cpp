@@ -5,6 +5,7 @@
 #include <stdlib.h>								//rand, srand, time
 #include "ColorfulConsole/CloEscString.h"		//ces
 #include "polyfit/polyfit.h"					//polyfit
+#include "QueryFlow.h"							//QueryFlow
 
 using std::vector;
 using std::cout;
@@ -74,18 +75,22 @@ namespace Hyt
 			double r = rand() / 32768.0 - 0.5;
 			samples_X.push_back(x);
 			samples_Y.push_back(GetValue(x) + r);
-			cout << x << ' ' << (GetValue(x) + r) << '\n';
+			//cout << x << ' ' << (GetValue(x) + r) << '\n';
 		}
 		vector<double> fitargs(argsList.size());
 		//调用一个轮子进行参数辨识 注意这里的order是指阶数, "y=x+1" 阶数为1
 		polyfit(samples_X.begin()._Ptr, samples_Y.begin()._Ptr, count, argsList.size() - 1, fitargs.begin()._Ptr);
-		//Debug
-		for (int i = 0; i < fitargs.size(); i++)
+		if (/*QueryFlow::YesNoQuery("&8是否输出&r辨识数据?\n>")*/true)
 		{
-			cout << i << ' ' << fitargs[i] << '\n';
+			for (int i = 0; i < fitargs.size(); i++)
+			{
+				cout << i << ' ' << fitargs[i] << '\n';
+			}
 		}
+		//Debug
+		
 	}
-	void PolyFuncData::Output(const bool& withTag, const DetailLevel& level)
+	void PolyFuncData::Print(const bool& withTag, const DetailLevel& level)
 	{
 		if (withTag) cout << ces << "项数 &2最小值    &4最大值&r\n";
 		using std::setw;

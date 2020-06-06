@@ -6,6 +6,7 @@
 #include "Config.h"								//Config
 #include "PolyFuncData.h"						//PolyFuncData
 #include "DataMgr.h"							//DataMgr
+#include "Toolkit/Toolkit.h"					//Test
 
 using std::cout;
 using std::cin;
@@ -26,6 +27,8 @@ int main()
 
 	DataMgr mgr = DataMgr();
 	mgr.Input();
+	mgr.Print();
+	mgr.GenerateSamples();
 	mgr.SaveToFile("Data.json");
 
 	cfg.Save("Config.json");

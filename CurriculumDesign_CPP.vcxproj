@@ -163,6 +163,11 @@
     <ClCompile Include="polyfit\polyfit.c" />
     <ClCompile Include="PolyFuncData.cpp" />
     <ClCompile Include="QueryFlow.cpp" />
+    <ClCompile Include="Toolkit\ColorfulConsoler.c" />
+    <ClCompile Include="Toolkit\Coordinate.c" />
+    <ClCompile Include="Toolkit\KeyCtrl.c" />
+    <ClCompile Include="Toolkit\MenuMgr.c" />
+    <ClCompile Include="Toolkit\MsgBox.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorfulConsole\CloEscString.h" />
@@ -178,6 +183,12 @@
     <ClInclude Include="polyfit\polyfit.h" />
     <ClInclude Include="PolyFuncData.h" />
     <ClInclude Include="QueryFlow.h" />
+    <ClInclude Include="Toolkit\ColorfulConsoler.h" />
+    <ClInclude Include="Toolkit\Coordinate.h" />
+    <ClInclude Include="Toolkit\KeyCtrl.h" />
+    <ClInclude Include="Toolkit\MenuMgr.h" />
+    <ClInclude Include="Toolkit\MsgBox.h" />
+    <ClInclude Include="Toolkit\Toolkit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

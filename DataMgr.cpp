@@ -26,7 +26,7 @@ namespace Hyt
 		bool ifContinue = true;
 		while(ifContinue)
 		{
-			cout << ces << "请输入第[&1" << (index + 1) << ces << "]&r个数据.\n";
+			cout << ces << "请输入第[&1" << (index + 1) << ces << "&r]个数据.\n";
 			dataList.emplace_back();
 			dataList[index].Input(true);
 			ifContinue = QueryFlow::IfContinue();
@@ -35,10 +35,24 @@ namespace Hyt
 	}
 	void DataMgr::Print()
 	{
+		cout << ces << "&9当前数据&r如下:\n";
+		for (uint i = 0; i < dataList.size(); i++)
+		{
+			cout << ces << "第&1" << i << ces << "&r个数据:\n";
+			dataList[i].Print(true);
+		}
+		cout << ces << "&a--------------------&r数据输出完毕&a------------------------------------\n";
 	}
 	void DataMgr::SaveToFile(const string& fileName)
 	{
 		WriteAll(fileName, json(*this).dump(4));
+	}
+	void DataMgr::GenerateSamples()
+	{
+		for (auto each : dataList)
+		{
+			each.GenerateSamples();
+		}
 	}
 	void to_json(json& j, const DataMgr& mgr)
 	{

@@ -20,6 +20,7 @@ namespace Hyt
 		void Input();
 		void Print();
 		void SaveToFile(const string& fileName);
+		void GenerateSamples();
 		friend void to_json(json& j, const DataMgr& mgr);
 		friend void from_json(const json& j, DataMgr& mgr);
 	};
