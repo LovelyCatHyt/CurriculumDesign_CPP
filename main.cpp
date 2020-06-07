@@ -6,7 +6,10 @@
 #include "Config.h"								//Config
 #include "PolyFuncData.h"						//PolyFuncData
 #include "DataMgr.h"							//DataMgr
-#include "Toolkit/Toolkit.h"					//Test
+#include "ConAPIProx/GetKey.h"        
+#include "QueryFlow.h"
+
+//#define DEBUG
 
 using std::cout;
 using std::cin;
@@ -20,12 +23,17 @@ using Hyt::DataMgr;
 
 int main()
 {
+#ifdef DEBUG
+	bool result = Hyt::QueryFlow::YesNoQuery("测试&1测试&c测试&r",true);
+	cout << ces << "&rresult: " << result << "\n";
+#else // DEBUG
+
 	Config cfg = Config::GetConfig("Config.json");
 	cout << "配置已读取.\n";
 	cfg.Init();
 	cout << "配置初始化完成.\n";
 
-	DataMgr mgr = DataMgr();
+	DataMgr mgr = DataMgr::ReadFromFile("Data.json");
 	mgr.Input();
 	mgr.Print();
 	mgr.GenerateSamples();
@@ -35,4 +43,5 @@ int main()
 	cout << ces << "cfg saved to file: &1Config.json\n";
 	cout << ces << "&rEnd of main()";
 	return 0;
+#endif
 }

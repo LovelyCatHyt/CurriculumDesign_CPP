@@ -6,24 +6,18 @@
         "rms": 0.0,
         "samples_X": [],
         "samples_Y": [],
-        "xmax": 6.0,
-        "xmin": -5.0
+        "xmax": 8.0,
+        "xmin": 0.0
     },
     {
         "argsList": [
-            1.0,
-            2.0,
-            3.0,
-            4.0,
-            5.0,
-            6.0,
-            7.0,
+            8.0,
             8.0
         ],
         "rms": 0.0,
         "samples_X": [],
         "samples_Y": [],
-        "xmax": 100.0,
-        "xmin": -100.0
+        "xmax": 23.0,
+        "xmin": -1.0
     }
 ]

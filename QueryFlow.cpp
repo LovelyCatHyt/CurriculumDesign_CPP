@@ -1,7 +1,12 @@
-#include "QueryFlow.h"
+ï»¿#include "QueryFlow.h"
 #include <iostream>							//cout, cin
 #include <string>							//string
 #include "ColorfulConsole/CloEscString.h"	//ces
+#include "ConAPIProx/AttrBrash.h"			//SetRectColor
+#include "ConAPIProx/Rect.h"
+#include "ConAPIProx/Positioner.h"			
+#include "ColorfulConsole/GlobalEnvironment.h"
+#include "ConAPIProx/GetKey.h"
 
 using std::cin;
 using std::cout;
@@ -9,21 +14,60 @@ using ColorfulConsole::ces;
 
 namespace Hyt
 {
-	bool Hyt::QueryFlow::YesNoQuery(const string& queryWord, const bool& useCES)
+	bool QueryFlow::YesNoQuery(const string& queryWord, const bool& useCES)
 	{
+		using namespace ConAPIProx;
+		using GloEnv = ColorfulConsole::GlobalEnvironment;
+		using TAttr = ColorfulConsole::TextAttribute::WarpedTextAttr;
+		using ColorfulConsole::Color;
+		
+		Position begin = Positioner::GetCursorPosition();
+		Position current = begin;
 		if (useCES) cout << ces << queryWord; else cout << queryWord;
-		char temp;
-		cin >> temp;
-		if (cin.bad() || cin.eof() || cin.fail())
+		//char temp;
+		
+		cout << "\n";
+		current = Positioner::GetCursorPosition();
+		cout << "ç¡®è®¤|å–æ¶ˆ\n";
+		Rect leftZone(current, current + Position{ 3,0 });
+		Rect rightZone(current + Position{ 5,0 }, current + Position{ 8,0 });
+		AttrBrash::SetRectForeColor(leftZone, Color(1));
+		AttrBrash::SetRectForeColor(rightZone, Color(8));
+		bool yes = true;
+		//æŒ‰é”®åˆ¤æ–­
+		bool getAction = false;
+		while (!getAction)
 		{
-			//Çå³ýÊäÈë²¢·µ»Øfalse
-			cin.clear();
-			return false;
+			switch (ConAPIProx::GetKey())
+			{
+			case ConAPIProx::LeftArrow:
+				AttrBrash::SetRectForeColor(leftZone, Color(1));
+				AttrBrash::SetRectForeColor(rightZone, Color(8));
+				yes = true; break;
+			case ConAPIProx::RightArrow:
+				AttrBrash::SetRectForeColor(leftZone, Color(8));
+				AttrBrash::SetRectForeColor(rightZone, Color(1));
+				yes = false; break;
+			case ConAPIProx::Esc:
+				yes = false; getAction = true; break;
+			case ConAPIProx::Enter:
+				getAction = true; break;
+			default:
+				break;
+			}
 		}
-		return temp == 'Y' || temp == 'y';
+		return yes;
+		//cin >> temp;
+		//if (cin.bad() || cin.eof() || cin.fail())
+		//{
+		//	//æ¸…é™¤è¾“å…¥å¹¶è¿”å›žfalse
+		//	cin.clear();
+		//	return false;
+		//}
+		//return temp == 'Y' || temp == 'y';
 	}
 
-	bool Hyt::QueryFlow::IfContinue(const string& queryWord)
+	bool QueryFlow::IfContinue(const string& queryWord)
 	{
 		return YesNoQuery(queryWord, true);
 	}

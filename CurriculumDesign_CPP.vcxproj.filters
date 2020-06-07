@@ -28,6 +28,12 @@
     <Filter Include="源文件\json">
       <UniqueIdentifier>{a659799c-0673-492a-b99f-ec8eeae7ce7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\ConAPIProx">
+      <UniqueIdentifier>{f1484edc-f360-46a0-903b-2e03ba84df1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ConAPIProx">
+      <UniqueIdentifier>{08639325-e2c9-4c2e-b41d-e91f231ee4db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColorfulConsole\Color.cpp">
@@ -75,6 +81,21 @@
     <ClCompile Include="QueryFlow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ConAPIProx\Position.cpp">
+      <Filter>源文件\ConAPIProx</Filter>
+    </ClCompile>
+    <ClCompile Include="ConAPIProx\Positioner.cpp">
+      <Filter>源文件\ConAPIProx</Filter>
+    </ClCompile>
+    <ClCompile Include="ConAPIProx\Rect.cpp">
+      <Filter>源文件\ConAPIProx</Filter>
+    </ClCompile>
+    <ClCompile Include="ConAPIProx\AttrBrash.cpp">
+      <Filter>源文件\ConAPIProx</Filter>
+    </ClCompile>
+    <ClCompile Include="ConAPIProx\GetKey.cpp">
+      <Filter>源文件\ConAPIProx</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorfulConsole\TextAttrSetter.h">
@@ -115,6 +136,21 @@
     </ClInclude>
     <ClInclude Include="QueryFlow.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ConAPIProx\Position.h">
+      <Filter>头文件\ConAPIProx</Filter>
+    </ClInclude>
+    <ClInclude Include="ConAPIProx\Positioner.h">
+      <Filter>头文件\ConAPIProx</Filter>
+    </ClInclude>
+    <ClInclude Include="ConAPIProx\Rect.h">
+      <Filter>头文件\ConAPIProx</Filter>
+    </ClInclude>
+    <ClInclude Include="ConAPIProx\AttrBrash.h">
+      <Filter>头文件\ConAPIProx</Filter>
+    </ClInclude>
+    <ClInclude Include="ConAPIProx\GetKey.h">
+      <Filter>头文件\ConAPIProx</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

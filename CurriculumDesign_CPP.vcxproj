@@ -156,6 +156,11 @@
     <ClCompile Include="ColorfulConsole\TextAttrSetter.cpp" />
     <ClCompile Include="ColorwithJSON.cpp" />
     <ClCompile Include="ColorwithJSON.h" />
+    <ClCompile Include="ConAPIProx\AttrBrash.cpp" />
+    <ClCompile Include="ConAPIProx\GetKey.cpp" />
+    <ClCompile Include="ConAPIProx\Position.cpp" />
+    <ClCompile Include="ConAPIProx\Positioner.cpp" />
+    <ClCompile Include="ConAPIProx\Rect.cpp" />
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="DataMgr.cpp" />
     <ClCompile Include="FileIO.cpp" />
@@ -171,6 +176,11 @@
     <ClInclude Include="ColorfulConsole\GlobalEnvironment.h" />
     <ClInclude Include="ColorfulConsole\TextAttribute.h" />
     <ClInclude Include="ColorfulConsole\TextAttrSetter.h" />
+    <ClInclude Include="ConAPIProx\AttrBrash.h" />
+    <ClInclude Include="ConAPIProx\GetKey.h" />
+    <ClInclude Include="ConAPIProx\Position.h" />
+    <ClInclude Include="ConAPIProx\Positioner.h" />
+    <ClInclude Include="ConAPIProx\Rect.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="DataMgr.h" />
     <ClInclude Include="FileIO.h" />

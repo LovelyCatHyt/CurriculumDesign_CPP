@@ -3,6 +3,7 @@
 #include "FileIO.h"								//Read/Write
 #include <iostream>								//cout
 #include <string>								//string
+#include "json/json.hpp"
 #include "ColorwithJSON.h"						//json ↔ Color
 #include "ColorfulConsole/GlobalEnvironment.h"	//GlobalEnvironment
 
@@ -11,7 +12,6 @@ using std::string;
 
 namespace Hyt
 {
-	
 	namespace Configration
 	{
 		void from_json(const json& j, Config& cfg)
