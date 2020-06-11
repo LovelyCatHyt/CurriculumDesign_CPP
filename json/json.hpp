@@ -2802,11 +2802,11 @@ template<class B1, class... Bn>
 struct conjunction<B1, Bn...>
 : std::conditional<bool(B1::value), conjunction<Bn...>, B1>::type {};
 
-template <typename T1, typename T2>
+template <typename T, typename T2>
 struct is_constructible_tuple : std::false_type {};
 
-template <typename T1, typename... Args>
-struct is_constructible_tuple<T1, std::tuple<Args...>> : conjunction<std::is_constructible<T1, Args>...> {};
+template <typename T, typename... Args>
+struct is_constructible_tuple<T, std::tuple<Args...>> : conjunction<std::is_constructible<T, Args>...> {};
 }  // namespace detail
 }  // namespace nlohmann
 
@@ -3746,8 +3746,8 @@ void to_json(BasicJsonType& j, const T(&arr)[N])
     external_constructor<value_t::array>::construct(j, arr);
 }
 
-template < typename BasicJsonType, typename T1, typename T2, enable_if_t < std::is_constructible<BasicJsonType, T1>::value&& std::is_constructible<BasicJsonType, T2>::value, int > = 0 >
-void to_json(BasicJsonType& j, const std::pair<T1, T2>& p)
+template < typename BasicJsonType, typename T, typename T2, enable_if_t < std::is_constructible<BasicJsonType, T>::value&& std::is_constructible<BasicJsonType, T2>::value, int > = 0 >
+void to_json(BasicJsonType& j, const std::pair<T, T2>& p)
 {
     j = { p.first, p.second };
 }

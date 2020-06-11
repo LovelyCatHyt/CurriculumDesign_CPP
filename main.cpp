@@ -34,7 +34,7 @@ int main()
 	cout << "配置初始化完成.\n";
 
 	DataMgr mgr = DataMgr::ReadFromFile("Data.json");
-	mgr.Input();
+	if (Hyt::QueryFlow::YesNoQuery("是否输入数据?")) mgr.Input();
 	mgr.Print();
 	mgr.GenerateSamples();
 	mgr.SaveToFile("Data.json");

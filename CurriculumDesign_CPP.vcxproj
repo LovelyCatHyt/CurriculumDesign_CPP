@@ -168,6 +168,8 @@
     <ClCompile Include="polyfit\polyfit.c" />
     <ClCompile Include="PolyFuncData.cpp" />
     <ClCompile Include="QueryFlow.cpp" />
+    <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserOper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorfulConsole\CloEscString.h" />
@@ -185,9 +187,18 @@
     <ClInclude Include="DataMgr.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="json\json.hpp" />
+    <ClInclude Include="libbcrypt\include\bcrypt\bcrypt.h" />
+    <ClInclude Include="libbcrypt\include\bcrypt\BCrypt.hpp" />
+    <ClInclude Include="libbcrypt\include\bcrypt\crypt.h" />
+    <ClInclude Include="libbcrypt\include\bcrypt\crypt_blowfish.h" />
+    <ClInclude Include="libbcrypt\include\bcrypt\crypt_gensalt.h" />
+    <ClInclude Include="libbcrypt\include\bcrypt\ow-crypt.h" />
+    <ClInclude Include="libbcrypt\include\bcrypt\winbcrypt.h" />
     <ClInclude Include="polyfit\polyfit.h" />
     <ClInclude Include="PolyFuncData.h" />
     <ClInclude Include="QueryFlow.h" />
+    <ClInclude Include="User.h" />
+    <ClInclude Include="UserOper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

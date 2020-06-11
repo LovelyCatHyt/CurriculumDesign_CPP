@@ -34,6 +34,12 @@
     <Filter Include="头文件\ConAPIProx">
       <UniqueIdentifier>{08639325-e2c9-4c2e-b41d-e91f231ee4db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\bcrypt">
+      <UniqueIdentifier>{72d2617c-ee7c-42c5-b16c-b7013db30446}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\bcrypt">
+      <UniqueIdentifier>{3ded76cc-2626-47b7-b946-17b0dae9c0ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColorfulConsole\Color.cpp">
@@ -96,6 +102,12 @@
     <ClCompile Include="ConAPIProx\GetKey.cpp">
       <Filter>源文件\ConAPIProx</Filter>
     </ClCompile>
+    <ClCompile Include="UserOper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorfulConsole\TextAttrSetter.h">
@@ -151,6 +163,33 @@
     </ClInclude>
     <ClInclude Include="ConAPIProx\GetKey.h">
       <Filter>头文件\ConAPIProx</Filter>
+    </ClInclude>
+    <ClInclude Include="UserOper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="libbcrypt\include\bcrypt\bcrypt.h">
+      <Filter>头文件\bcrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="libbcrypt\include\bcrypt\crypt.h">
+      <Filter>头文件\bcrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="libbcrypt\include\bcrypt\crypt_blowfish.h">
+      <Filter>头文件\bcrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="libbcrypt\include\bcrypt\crypt_gensalt.h">
+      <Filter>头文件\bcrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="libbcrypt\include\bcrypt\ow-crypt.h">
+      <Filter>头文件\bcrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="libbcrypt\include\bcrypt\winbcrypt.h">
+      <Filter>头文件\bcrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="libbcrypt\include\bcrypt\BCrypt.hpp">
+      <Filter>源文件\bcrypt</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

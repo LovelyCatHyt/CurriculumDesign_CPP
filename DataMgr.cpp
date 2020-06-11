@@ -13,7 +13,7 @@ namespace Hyt
 {
 	DataMgr::DataMgr() : dataList()
 	{
-		
+
 	}
 	DataMgr DataMgr::ReadFromFile(const string& fileName)
 	{
@@ -24,14 +24,14 @@ namespace Hyt
 	{
 		uint index = 0;
 		bool ifContinue = true;
-		while(ifContinue)
+		while (ifContinue)
 		{
 			cout << ces << "请输入第[&1" << (index + 1) << ces << "&r]个数据.\n";
 			dataList.emplace_back();
 			dataList[index].Input(true);
 			ifContinue = QueryFlow::IfContinue();
 			index++;
-		} 
+		}
 	}
 	void DataMgr::Print()
 	{
@@ -50,10 +50,14 @@ namespace Hyt
 	}
 	void DataMgr::GenerateSamples()
 	{
-		for (auto each : dataList)
+		cout << ces << "&8正在辨识参数...&r\n";
+		for (int i = 0; i < dataList.size(); i++)
 		{
-			each.GenerateSamples();
+			cout << "[" << i << "]: ";
+			dataList[i].GenerateSamples();
+			cout << '\n';
 		}
+		cout << ces << "&a--------------------&r参数辨识完毕&a------------------------------------\n";
 	}
 	void to_json(json& j, const DataMgr& mgr)
 	{

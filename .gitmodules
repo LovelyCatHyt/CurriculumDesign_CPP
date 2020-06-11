@@ -4,3 +4,6 @@
 [submodule "polyfit"]
 	path = polyfit
 	url = https://github.com/natedomin/polyfit.git
+[submodule "libbcrypt"]
+	path = libbcrypt
+	url = https://github.com/trusch/libbcrypt.git

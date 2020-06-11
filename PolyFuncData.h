@@ -49,6 +49,8 @@ namespace Hyt
 		friend void to_json(json& j, const PolyFuncData& data);
 		friend void from_json(const json& j, PolyFuncData& data);
 	};
+	
+
 	void to_json(json& j, const PolyFuncData& data);
 	void from_json(const json& j, PolyFuncData& data);
 	//计算多项式函数的函数值
