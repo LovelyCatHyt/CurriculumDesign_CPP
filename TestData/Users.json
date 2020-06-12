@@ -1,0 +1,14 @@
+{
+    "users": [
+        {
+            "dataName": "TestData/Data1.json",
+            "pwHash": "$2a$12$qWQPLXAOJeV3ISZ7MDm7Wu4Z9gY6VGPTrTiVnrlqkQU6b34wV7We.",
+            "userName": "Admin"
+        },
+        {
+            "dataName": "TestData/Data2.json",
+            "pwHash": "$2a$12$qWQPLXAOJeV3ISZ7MDm7Wu4Z9gY6VGPTrTiVnrlqkQU6b34wV7We.",
+            "userName": "StudentA"
+        }
+    ]
+}

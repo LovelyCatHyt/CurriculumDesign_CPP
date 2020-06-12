@@ -164,11 +164,16 @@
     <ClCompile Include="Config.cpp" />
     <ClCompile Include="DataMgr.cpp" />
     <ClCompile Include="FileIO.cpp" />
+    <ClCompile Include="libbcrypt\src\bcrypt.c" />
+    <ClCompile Include="libbcrypt\src\crypt_blowfish.c" />
+    <ClCompile Include="libbcrypt\src\crypt_gensalt.c" />
+    <ClCompile Include="libbcrypt\src\wrapper.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="polyfit\polyfit.c" />
     <ClCompile Include="PolyFuncData.cpp" />
     <ClCompile Include="QueryFlow.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserMgr.cpp" />
     <ClCompile Include="UserOper.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +203,7 @@
     <ClInclude Include="PolyFuncData.h" />
     <ClInclude Include="QueryFlow.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="UserMgr.h" />
     <ClInclude Include="UserOper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

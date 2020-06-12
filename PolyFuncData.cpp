@@ -88,17 +88,14 @@ namespace Hyt
 	{
 		if (withTag) cout << ces << "项数 &2最小值    &4最大值&r\n";
 		using std::setw;
-		cout << std::left << setw(5) << argsList.size() << setw(10) << xmin << setw(10) << xmax;
+		cout << std::left << setw(5) << argsList.size() << setw(10) << xmin << setw(10) << xmax << '\n';
 		switch (level)
 		{
 		case DetailLevel::Default:
 			if (withTag)
 			{
 				cout << "系数列表:\n";
-				for (int i = 0; i < argsList.size(); i++)
-				{
-					cout << ces('8') << (i + 1) << ' ' << ces('r') << setw(8) << argsList[i] << '\n';
-				}
+				PrintDataList(argsList);
 			}
 			break;
 		}

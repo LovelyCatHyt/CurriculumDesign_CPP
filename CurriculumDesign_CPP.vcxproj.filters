@@ -108,6 +108,21 @@
     <ClCompile Include="User.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="UserMgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="libbcrypt\src\crypt_blowfish.c">
+      <Filter>源文件\bcrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="libbcrypt\src\crypt_gensalt.c">
+      <Filter>源文件\bcrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="libbcrypt\src\wrapper.c">
+      <Filter>源文件\bcrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="libbcrypt\src\bcrypt.c">
+      <Filter>源文件\bcrypt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorfulConsole\TextAttrSetter.h">
@@ -170,7 +185,10 @@
     <ClInclude Include="User.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="libbcrypt\include\bcrypt\bcrypt.h">
+    <ClInclude Include="UserMgr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="libbcrypt\include\bcrypt\BCrypt.hpp">
       <Filter>头文件\bcrypt</Filter>
     </ClInclude>
     <ClInclude Include="libbcrypt\include\bcrypt\crypt.h">
@@ -188,8 +206,8 @@
     <ClInclude Include="libbcrypt\include\bcrypt\winbcrypt.h">
       <Filter>头文件\bcrypt</Filter>
     </ClInclude>
-    <ClInclude Include="libbcrypt\include\bcrypt\BCrypt.hpp">
-      <Filter>源文件\bcrypt</Filter>
+    <ClInclude Include="libbcrypt\include\bcrypt\bcrypt.h">
+      <Filter>头文件\bcrypt</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
