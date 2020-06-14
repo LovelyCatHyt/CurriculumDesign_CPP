@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CurriculumDesign_CPP", "Cur
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "UnitTest\UnitTest.vcxproj", "{E5A75985-74D5-47CF-B63C-6D79927C9C38}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "Main\Main.vcxproj", "{77A1AC41-969D-498A-8549-0768993004AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,18 @@ Global
 		{E5A75985-74D5-47CF-B63C-6D79927C9C38}.UnitTest|x64.Build.0 = UnitTest|x64
 		{E5A75985-74D5-47CF-B63C-6D79927C9C38}.UnitTest|x86.ActiveCfg = UnitTest|Win32
 		{E5A75985-74D5-47CF-B63C-6D79927C9C38}.UnitTest|x86.Build.0 = UnitTest|Win32
+		{77A1AC41-969D-498A-8549-0768993004AC}.Debug|x64.ActiveCfg = Debug|x64
+		{77A1AC41-969D-498A-8549-0768993004AC}.Debug|x64.Build.0 = Debug|x64
+		{77A1AC41-969D-498A-8549-0768993004AC}.Debug|x86.ActiveCfg = Debug|Win32
+		{77A1AC41-969D-498A-8549-0768993004AC}.Debug|x86.Build.0 = Debug|Win32
+		{77A1AC41-969D-498A-8549-0768993004AC}.Release|x64.ActiveCfg = Release|x64
+		{77A1AC41-969D-498A-8549-0768993004AC}.Release|x64.Build.0 = Release|x64
+		{77A1AC41-969D-498A-8549-0768993004AC}.Release|x86.ActiveCfg = Release|Win32
+		{77A1AC41-969D-498A-8549-0768993004AC}.Release|x86.Build.0 = Release|Win32
+		{77A1AC41-969D-498A-8549-0768993004AC}.UnitTest|x64.ActiveCfg = Release|x64
+		{77A1AC41-969D-498A-8549-0768993004AC}.UnitTest|x64.Build.0 = Release|x64
+		{77A1AC41-969D-498A-8549-0768993004AC}.UnitTest|x86.ActiveCfg = Release|Win32
+		{77A1AC41-969D-498A-8549-0768993004AC}.UnitTest|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

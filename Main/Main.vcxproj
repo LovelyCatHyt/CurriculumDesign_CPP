@@ -17,20 +17,12 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="UnitTest|Win32">
-      <Configuration>UnitTest</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="UnitTest|x64">
-      <Configuration>UnitTest</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{5C6B4043-16DC-4C37-8CF4-96E20354AF80}</ProjectGuid>
+    <ProjectGuid>{77A1AC41-969D-498A-8549-0768993004AC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>CurriculumDesignCPP</RootNamespace>
+    <RootNamespace>Main</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -48,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -59,13 +51,6 @@
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">
-    <PlatformToolset>v142</PlatformToolset>
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-  </PropertyGroup>
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='UnitTest|x64'">
-    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -85,11 +70,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(VC_IncludePath)/json/include</IncludePath>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -98,20 +82,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-    </Link>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>
@@ -119,6 +89,20 @@
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -163,62 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ColorfulConsole\CloEscString.cpp" />
-    <ClCompile Include="ColorfulConsole\Color.cpp" />
-    <ClCompile Include="ColorfulConsole\ForeColorProxy.cpp" />
-    <ClCompile Include="ColorfulConsole\GlobalEnvironment.cpp" />
-    <ClCompile Include="ColorfulConsole\TextAttribute.cpp" />
-    <ClCompile Include="ColorfulConsole\TextAttrSetter.cpp" />
-    <ClCompile Include="ColorwithJSON.cpp" />
-    <ClCompile Include="ColorwithJSON.h" />
-    <ClCompile Include="ConAPIProx\AttrBrash.cpp" />
-    <ClCompile Include="ConAPIProx\GetKey.cpp" />
-    <ClCompile Include="ConAPIProx\Position.cpp" />
-    <ClCompile Include="ConAPIProx\Positioner.cpp" />
-    <ClCompile Include="ConAPIProx\Rect.cpp" />
-    <ClCompile Include="Config.cpp" />
-    <ClCompile Include="DataMgr.cpp" />
-    <ClCompile Include="FileIO.cpp" />
-    <ClCompile Include="libbcrypt\src\bcrypt.c" />
-    <ClCompile Include="libbcrypt\src\crypt_blowfish.c" />
-    <ClCompile Include="libbcrypt\src\crypt_gensalt.c" />
-    <ClCompile Include="libbcrypt\src\wrapper.c" />
-    <ClCompile Include="polyfit\polyfit.c" />
-    <ClCompile Include="PolyFuncData.cpp" />
-    <ClCompile Include="QueryFlow.cpp" />
-    <ClCompile Include="User.cpp" />
-    <ClCompile Include="UserMgr.cpp" />
-    <ClCompile Include="UserOper.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ColorfulConsole\CloEscString.h" />
-    <ClInclude Include="ColorfulConsole\Color.h" />
-    <ClInclude Include="ColorfulConsole\ForeColorProxy.h" />
-    <ClInclude Include="ColorfulConsole\GlobalEnvironment.h" />
-    <ClInclude Include="ColorfulConsole\TextAttribute.h" />
-    <ClInclude Include="ColorfulConsole\TextAttrSetter.h" />
-    <ClInclude Include="ConAPIProx\AttrBrash.h" />
-    <ClInclude Include="ConAPIProx\GetKey.h" />
-    <ClInclude Include="ConAPIProx\Position.h" />
-    <ClInclude Include="ConAPIProx\Positioner.h" />
-    <ClInclude Include="ConAPIProx\Rect.h" />
-    <ClInclude Include="Config.h" />
-    <ClInclude Include="DataMgr.h" />
-    <ClInclude Include="FileIO.h" />
-    <ClInclude Include="json\json.hpp" />
-    <ClInclude Include="libbcrypt\include\bcrypt\bcrypt.h" />
-    <ClInclude Include="libbcrypt\include\bcrypt\BCrypt.hpp" />
-    <ClInclude Include="libbcrypt\include\bcrypt\crypt.h" />
-    <ClInclude Include="libbcrypt\include\bcrypt\crypt_blowfish.h" />
-    <ClInclude Include="libbcrypt\include\bcrypt\crypt_gensalt.h" />
-    <ClInclude Include="libbcrypt\include\bcrypt\ow-crypt.h" />
-    <ClInclude Include="libbcrypt\include\bcrypt\winbcrypt.h" />
-    <ClInclude Include="polyfit\polyfit.h" />
-    <ClInclude Include="PolyFuncData.h" />
-    <ClInclude Include="QueryFlow.h" />
-    <ClInclude Include="User.h" />
-    <ClInclude Include="UserMgr.h" />
-    <ClInclude Include="UserOper.h" />
+    <ProjectReference Include="..\CurriculumDesign_CPP.vcxproj">
+      <Project>{5c6b4043-16dc-4c37-8cf4-96e20354af80}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
