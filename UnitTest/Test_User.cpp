@@ -38,5 +38,16 @@ namespace UnitTest
 			Assert::IsTrue(u.Verify("114514"));
 			Assert::AreEqual(u.Access(), 0);
 		}
+		TEST_METHOD(Test_Encrypt)
+		{
+			User test = User("Admin", "114514", "NULL", 0);
+			
+			std::string raw = "114514";
+			std::string secretKey = test.GenerateSecretKey("");
+			
+			std::string encrypted = Encrypt(raw, secretKey);
+			std::string decrypted = Decrypt(encrypted, secretKey);
+			Assert::AreEqual(raw.c_str(), decrypted.c_str());
+		}
 	};
 }
