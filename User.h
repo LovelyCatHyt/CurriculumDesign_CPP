@@ -12,15 +12,24 @@ namespace Hyt
 		std::string pwHash;
 		std::string userName;
 		std::string dataName;
+		std::string access_cipher;
+		//密钥: 运行时变量, 不保存
+		std::string secretKey;
 	public:
 		User(const std::string& userName = "", const std::string& pw = "", const std::string& dataName = "");
-		bool Verrify(const std::string& pw);
+		User(const std::string& userName, const std::string& pw, const std::string& dataName, const int& access);
+		bool Verify(const std::string& pw);
 		void RefreshPw(const std::string& pw);
 		std::string Name();
 		std::string DataName();
+		//根据密文获取权限数, 0: Admin, 1: Normal
+		int Access(std::string ciphertext = "0");
+		void GenerateSecretKey(const std::string& pw);
 		friend void to_json(json& j, const User& user);
 		friend void from_json(const json& j, User& user);
 		friend class UserMgr;
 	};
+	std::string Encrypt(const std::string& raw, const std::string& secretKet);
+	std::string Decrypt(const std::string& ciphertext, const std::string& secretKet);
 }
 

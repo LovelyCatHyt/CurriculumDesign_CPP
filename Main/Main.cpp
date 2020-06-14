@@ -1,10 +1,10 @@
 ﻿#include <iostream>								//cin, cout, endl
 #include <iomanip>								//setw
 
-#include "../ColorfulConsole/CloEscString.h"		//ces
+#include "../ColorfulConsole/CloEscString.h"	//ces
 #include "../json/json.hpp"						//json related
-#include "../Config.h"								//Config
-#include "../PolyFuncData.h"						//PolyFuncData
+#include "../Config.h"							//Config
+#include "../PolyFuncData.h"					//PolyFuncData
 #include "../DataMgr.h"							//DataMgr
 #include "../QueryFlow.h"
 #include "../UserMgr.h"							//UserMgr, User

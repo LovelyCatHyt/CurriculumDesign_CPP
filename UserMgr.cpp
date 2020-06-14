@@ -68,7 +68,7 @@ namespace Hyt
 		{
 			return *(User*)NULL;
 		}
-		if (temp.Verrify(pw))
+		if (temp.Verify(pw))
 		{
 			success = true;
 			return temp;
