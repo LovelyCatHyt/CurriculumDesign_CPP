@@ -56,7 +56,7 @@ int main()
 	if (Hyt::QueryFlow::YesNoQuery("是否输入数据?")) mgr.Input();
 	mgr.Print();
 	mgr.GenerateSamples();
-	mgr.SaveToFile("Data.json");
+	mgr.SaveToFile(currentUser->DataName());
 
 	cfg.Save(configFile);
 	/*cout << ces << "cfg saved to file: &1Config.json\n";
