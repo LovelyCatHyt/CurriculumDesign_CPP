@@ -40,6 +40,12 @@
     <Filter Include="源文件\bcrypt">
       <UniqueIdentifier>{3ded76cc-2626-47b7-b946-17b0dae9c0ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\AES">
+      <UniqueIdentifier>{d8e06f45-20d2-4525-a168-0684b21f9407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\cpp-base64">
+      <UniqueIdentifier>{15640e90-4c59-41a3-822c-ff93e6286fcd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColorfulConsole\Color.cpp">
@@ -116,6 +122,12 @@
     </ClCompile>
     <ClCompile Include="libbcrypt\src\bcrypt.c">
       <Filter>源文件\bcrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="AES\AES.cpp">
+      <Filter>源文件\AES</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp-base64\base64.cpp">
+      <Filter>源文件\cpp-base64</Filter>
     </ClCompile>
     <ClCompile Include="UserOper.cpp">
       <Filter>源文件</Filter>
@@ -206,5 +218,27 @@
     <ClInclude Include="UserOper.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AES\AES.h">
+      <Filter>源文件\AES</Filter>
+    </ClInclude>
+    <ClInclude Include="cpp-base64\base64.h">
+      <Filter>源文件\cpp-base64</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="AES\CMakeLists.txt">
+      <Filter>源文件\AES</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AES\LICENSE">
+      <Filter>源文件\AES</Filter>
+    </None>
+    <None Include="AES\README.md">
+      <Filter>源文件\AES</Filter>
+    </None>
+    <None Include="AES\.travis.yml">
+      <Filter>源文件\AES</Filter>
+    </None>
   </ItemGroup>
 </Project>
