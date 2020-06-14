@@ -44,9 +44,12 @@ namespace Hyt
 	}
 	void User::RefreshPw(const std::string& pw)
 	{
+		int accessBefore = Access();
+		char temp[16];
+		_itoa_s(accessBefore, temp, 16, 10);
 		pwHash = BCrypt::generateHash(pw);
 		GenerateSecretKey(pw);
-		access_cipher = Encrypt(pw, secretKey);
+		access_cipher = Encrypt(temp, secretKey);
 	}
 	std::string User::Name()
 	{
@@ -56,9 +59,9 @@ namespace Hyt
 	{
 		return this->dataName;
 	}
-	int User::Access(std::string ciphertext)
+	int User::Access()
 	{
-		return atoi(Decrypt(ciphertext, secretKey).c_str());
+		return atoi(Decrypt(access_cipher, secretKey).c_str());
 	}
 	std::string User::GenerateSecretKey(const std::string& pw)
 	{

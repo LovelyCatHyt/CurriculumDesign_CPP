@@ -19,24 +19,18 @@ namespace UnitTest
 			Assert::IsTrue(tmp);
 		}
 
-		TEST_METHOD(FromJson)
-		{
-
-			UserMgr mgr = json::parse("{\"users\": [{\"dataName\": \"TestData/Data1.json\",\"pwHash\": \"$2a$12$qWQPLXAOJeV3ISZ7MDm7Wu4Z9gY6VGPTrTiVnrlqkQU6b34wV7We.\",\"userName\": \"Admin\",\"access_cipher\":\"0\"}]\n}");
-			bool temp;
-			User& result = mgr.Login("Admin", "114514", temp);
-			Assert::AreEqual(temp, true);
-		}
-
-		TEST_METHOD(ToJson)
+		TEST_METHOD(JsonConvert)
 		{
 			UserMgr mgr;
-			mgr.Register(User("Admin", "114514", "TestData/Data1.json"));
+			mgr.Register(User("Admin", "114514", "TestData/Data1.json",0));
 			json j = mgr;
 			UserMgr another = j;
 			bool temp;
-			another.Login("Admin","114514",temp);
+			User& result = mgr.Login("Admin", "114514", temp);
 			Assert::IsTrue(temp);
+			Assert::IsTrue(result.Access() == 0);
+			Assert::IsTrue(result.DataName() == "TestData/Data1.json");
+			Assert::IsTrue(result.Name() == "Admin");
 		}
 	};
 }

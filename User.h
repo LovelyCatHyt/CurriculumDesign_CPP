@@ -22,7 +22,7 @@ namespace Hyt
 		std::string Name();
 		std::string DataName();
 		//根据密文获取权限数, 0: Admin, 1: Normal
-		int Access(std::string ciphertext = "0");
+		int Access();
 		std::string GenerateSecretKey(const std::string& pw);
 		friend void to_json(json& j, const User& user);
 		friend void from_json(const json& j, User& user);

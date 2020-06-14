@@ -23,25 +23,25 @@ namespace UnitTest
 		TEST_METHOD(PW_Reset)
 		{
 			User test = User("Admin", "114514", "NULL", 0);
-			test.RefreshPw("1919810");
-			Assert::IsTrue(test.Verify("1919810"));
+			std::string newPw = "1919810";
+			test.RefreshPw(newPw);
+			Assert::IsTrue(test.Verify(newPw));
 			Assert::AreEqual(test.Access(), 0);
 		}
-		TEST_METHOD(FromJson)
+		TEST_METHOD(JsonConvert)
 		{
-			json j = json::parse("{\"dataName\": \"TestData\/Data2.json\","
-				"\"pwHash\":\"$2a$12$qWQPLXAOJeV3ISZ7MDm7Wu4Z9gY6VGPTrTiVnrlqkQU6b34wV7We.\","
-				"\"userName\": \"StudentA\","
-				"\"access_cipher\": \"0\"}");
+			User test = User("Admin", "114514", "NULL", 0);
+			json j = test;
 			User u = j;
-			Assert::AreEqual(u.Name().c_str(), "StudentA");
-			Assert::IsTrue(u.Verify("114514"));
+			Assert::AreEqual(u.Name().c_str(), "Admin");
+			Assert::AreEqual(u.DataName().c_str(), "NULL");
 			Assert::AreEqual(u.Access(), 0);
+			Assert::IsTrue(u.Verify("114514"));
 		}
 		TEST_METHOD(Test_Encrypt)
 		{
 			User test = User("Admin", "114514", "NULL", 0);
-			
+
 			std::string raw = "114514";
 			std::string secretKey = test.GenerateSecretKey("");
 			
