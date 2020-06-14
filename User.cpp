@@ -15,7 +15,6 @@ namespace Hyt
 		j["userName"] = user.userName;
 		j["dataName"] = user.dataName;
 		j["access_cipher"] = user.access_cipher;
-		j["secretKey"] = user.secretKey;
 	}
 	void from_json(const json& j, User& user)
 	{
@@ -23,7 +22,6 @@ namespace Hyt
 		j["userName"].get_to(user.userName);
 		j["dataName"].get_to(user.dataName);
 		j["access_cipher"].get_to(user.access_cipher);
-		j["secretKey"].get_to(user.secretKey);
 	}
 	User::User(const std::string& userName, const std::string& pw, const std::string& dataName) :
 		userName(userName), pwHash(BCrypt::generateHash(pw)), dataName(dataName)
