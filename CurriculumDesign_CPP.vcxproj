@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AES\AES.cpp" />
     <ClCompile Include="ColorfulConsole\CloEscString.cpp" />
     <ClCompile Include="ColorfulConsole\Color.cpp" />
     <ClCompile Include="ColorfulConsole\ForeColorProxy.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="ConAPIProx\Positioner.cpp" />
     <ClCompile Include="ConAPIProx\Rect.cpp" />
     <ClCompile Include="Config.cpp" />
+    <ClCompile Include="cpp-base64\base64.cpp" />
     <ClCompile Include="DataMgr.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="libbcrypt\src\bcrypt.c" />
@@ -191,6 +193,7 @@
     <ClCompile Include="UserOper.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AES\AES.h" />
     <ClInclude Include="ColorfulConsole\CloEscString.h" />
     <ClInclude Include="ColorfulConsole\Color.h" />
     <ClInclude Include="ColorfulConsole\ForeColorProxy.h" />
@@ -203,6 +206,7 @@
     <ClInclude Include="ConAPIProx\Positioner.h" />
     <ClInclude Include="ConAPIProx\Rect.h" />
     <ClInclude Include="Config.h" />
+    <ClInclude Include="cpp-base64\base64.h" />
     <ClInclude Include="DataMgr.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="json\json.hpp" />
@@ -219,6 +223,14 @@
     <ClInclude Include="User.h" />
     <ClInclude Include="UserMgr.h" />
     <ClInclude Include="UserOper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="AES\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AES\.travis.yml" />
+    <None Include="AES\LICENSE" />
+    <None Include="AES\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
