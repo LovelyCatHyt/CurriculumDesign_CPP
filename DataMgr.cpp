@@ -17,8 +17,16 @@ namespace Hyt
 	}
 	DataMgr DataMgr::ReadFromFile(const string& fileName)
 	{
-		json j = json::parse(ReadAll(fileName));
-		return j;
+		string fileContent = ReadAll(fileName);
+		if (fileContent.empty())
+		{
+			return DataMgr();
+		}
+		else
+		{
+			json j = json::parse(fileContent);
+			return j;
+		}
 	}
 	void DataMgr::Input()
 	{

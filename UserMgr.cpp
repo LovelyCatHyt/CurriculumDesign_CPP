@@ -79,6 +79,11 @@ namespace Hyt
 			return *(User*)NULL;
 		}
 	}
+
+	size_t UserMgr::UserCount()
+	{
+		return usersList.size();
+	}
 	
 	void to_json(nlohmann::json& j, const UserMgr& mgr)
 	{

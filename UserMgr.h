@@ -21,6 +21,7 @@ namespace Hyt
 		User& FindUser(std::string name, bool& success);
 		//登录, 登录成功则返回true, user为当前用户的指针
 		User& Login(std::string userName, std::string pw, bool& success);
+		size_t UserCount();
 		friend void to_json(nlohmann::json& j, const UserMgr& mgr);
 		friend void from_json(const nlohmann::json& j, UserMgr& mgr);
 	};

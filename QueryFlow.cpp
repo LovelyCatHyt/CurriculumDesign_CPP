@@ -71,4 +71,16 @@ namespace Hyt
 	{
 		return YesNoQuery(queryWord, true);
 	}
+	int QueryFlow::SaveInput_int(const std::string& queryWord, const std::string& failWord, const bool& useCES)
+	{
+		return BasicTypeInput<int>(queryWord,failWord,useCES);
+	}
+	float QueryFlow::SaveInput_float(const std::string& queryWord, const std::string& failWord, const bool& useCES)
+	{
+		return BasicTypeInput<float>(queryWord, failWord, useCES);
+	}
+	double QueryFlow::SaveInput_double(const std::string& queryWord, const std::string& failWord, const bool& useCES)
+	{
+		return BasicTypeInput<double>(queryWord, failWord, useCES);
+	}
 }

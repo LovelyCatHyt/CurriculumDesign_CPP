@@ -8,6 +8,8 @@
 #include "../DataMgr.h"							//DataMgr
 #include "../QueryFlow.h"
 #include "../UserMgr.h"							//UserMgr, User
+#include "../UserOper.h"						//UserOper
+
 
 //#define DEBUG
 
@@ -16,12 +18,8 @@ using std::cin;
 using std::endl;
 using namespace ColorfulConsole;
 using namespace nlohmann;
+using namespace Hyt;
 using namespace Hyt::Configration;
-using Hyt::PolyFuncData;
-using Hyt::DetailLevel;
-using Hyt::DataMgr;
-using Hyt::UserMgr;
-using Hyt::User;
 
 const string configFile = "TestData/Config.json";
 const string userFile = "TestData/Users.json";
@@ -40,16 +38,9 @@ int main()
 	string pw;
 	bool success;
 	User* currentUser = NULL;
-	do
-	{
-		cout << "请输入用户名: \n>";
-		cin >> userName;
-		cout << "请输入密码: \n>";
-		cin >> pw;
-		cout << ces << "&8用户验证中, 请耐心等待\n";
-		currentUser = &users.Login(userName, pw, success);
-		if (!success) cout << ces << "&4用户名或密码错误!&r\n";
-	} while (!success);
+
+	UserOper::LoginOrRegister(users, currentUser);
+
 	cout << ces << "&9欢迎" << currentUser->Name() << ces << "使用本系统!&r\n";
 
 	DataMgr mgr = DataMgr::ReadFromFile(currentUser->DataName());

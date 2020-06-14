@@ -99,9 +99,6 @@
     <ClCompile Include="ConAPIProx\GetKey.cpp">
       <Filter>源文件\ConAPIProx</Filter>
     </ClCompile>
-    <ClCompile Include="UserOper.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="User.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -119,6 +116,9 @@
     </ClCompile>
     <ClCompile Include="libbcrypt\src\bcrypt.c">
       <Filter>源文件\bcrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="UserOper.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -176,9 +176,6 @@
     <ClInclude Include="ConAPIProx\GetKey.h">
       <Filter>头文件\ConAPIProx</Filter>
     </ClInclude>
-    <ClInclude Include="UserOper.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="User.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -205,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="libbcrypt\include\bcrypt\bcrypt.h">
       <Filter>头文件\bcrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="UserOper.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
