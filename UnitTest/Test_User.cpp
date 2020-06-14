@@ -36,6 +36,7 @@ namespace UnitTest
 			User u = j;
 			Assert::AreEqual(u.Name().c_str(), "StudentA");
 			Assert::IsTrue(u.Verify("114514"));
+			Assert::AreEqual(u.Access(), 0);
 		}
 	};
 }

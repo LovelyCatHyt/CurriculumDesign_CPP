@@ -28,7 +28,8 @@ namespace Hyt
 	{
 		GenerateSecretKey(pw);
 		char temp[16];
-		access_cipher = Encrypt(itoa(access, temp, 10), secretKey);
+		_itoa_s(access, temp, 16, 10);
+		access_cipher = Encrypt(temp, secretKey);
 	}
 	bool User::Verify(const std::string& pw)
 	{

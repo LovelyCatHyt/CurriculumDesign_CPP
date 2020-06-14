@@ -22,7 +22,7 @@ namespace UnitTest
 		TEST_METHOD(FromJson)
 		{
 
-			UserMgr mgr = json::parse("{\n    \"users\": [\n        {\n            \"dataName\": \"TestData/Data1.json\",\n            \"pwHash\": \"$2a$12$qWQPLXAOJeV3ISZ7MDm7Wu4Z9gY6VGPTrTiVnrlqkQU6b34wV7We.\",\n            \"userName\": \"Admin\"\n        }\n    ]\n}");
+			UserMgr mgr = json::parse("{\"users\": [{\"dataName\": \"TestData/Data1.json\",\"pwHash\": \"$2a$12$qWQPLXAOJeV3ISZ7MDm7Wu4Z9gY6VGPTrTiVnrlqkQU6b34wV7We.\",\"userName\": \"Admin\",\"access_cipher\":\"0\"}]\n}");
 			bool temp;
 			User& result = mgr.Login("Admin", "114514", temp);
 			Assert::AreEqual(temp, true);
