@@ -217,6 +217,7 @@
     <ClInclude Include="libbcrypt\include\bcrypt\crypt_gensalt.h" />
     <ClInclude Include="libbcrypt\include\bcrypt\ow-crypt.h" />
     <ClInclude Include="libbcrypt\include\bcrypt\winbcrypt.h" />
+    <ClInclude Include="PicoSHA2\picosha2.h" />
     <ClInclude Include="polyfit\polyfit.h" />
     <ClInclude Include="PolyFuncData.h" />
     <ClInclude Include="QueryFlow.h" />

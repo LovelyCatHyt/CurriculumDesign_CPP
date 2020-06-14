@@ -46,6 +46,9 @@
     <Filter Include="源文件\cpp-base64">
       <UniqueIdentifier>{15640e90-4c59-41a3-822c-ff93e6286fcd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\PicoSHA2">
+      <UniqueIdentifier>{0e006719-6ee4-4f72-8309-449eb67b6271}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ColorfulConsole\Color.cpp">
@@ -105,6 +108,9 @@
     <ClCompile Include="ConAPIProx\GetKey.cpp">
       <Filter>源文件\ConAPIProx</Filter>
     </ClCompile>
+    <ClCompile Include="UserOper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="User.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -128,9 +134,6 @@
     </ClCompile>
     <ClCompile Include="cpp-base64\base64.cpp">
       <Filter>源文件\cpp-base64</Filter>
-    </ClCompile>
-    <ClCompile Include="UserOper.cpp">
-      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +191,9 @@
     <ClInclude Include="ConAPIProx\GetKey.h">
       <Filter>头文件\ConAPIProx</Filter>
     </ClInclude>
+    <ClInclude Include="UserOper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="User.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -215,14 +221,14 @@
     <ClInclude Include="libbcrypt\include\bcrypt\bcrypt.h">
       <Filter>头文件\bcrypt</Filter>
     </ClInclude>
-    <ClInclude Include="UserOper.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="AES\AES.h">
       <Filter>源文件\AES</Filter>
     </ClInclude>
     <ClInclude Include="cpp-base64\base64.h">
       <Filter>源文件\cpp-base64</Filter>
+    </ClInclude>
+    <ClInclude Include="PicoSHA2\picosha2.h">
+      <Filter>源文件\PicoSHA2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
