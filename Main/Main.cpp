@@ -49,7 +49,5 @@ int main()
 	mgr.SaveToFile(currentUser->DataName());
 
 	cfg.Save(configFile);
-	/*cout << ces << "cfg saved to file: &1Config.json\n";
-	cout << ces << "&rEnd of main()";*/
 	return 0;
 }

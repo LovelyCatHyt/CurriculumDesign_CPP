@@ -135,6 +135,9 @@
     <ClCompile Include="cpp-base64\base64.cpp">
       <Filter>源文件\cpp-base64</Filter>
     </ClCompile>
+    <ClCompile Include="StringUtiliy.h">
+      <Filter>头文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorfulConsole\TextAttrSetter.h">

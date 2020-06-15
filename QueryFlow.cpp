@@ -7,10 +7,13 @@
 #include "ConAPIProx/Positioner.h"			
 #include "ColorfulConsole/GlobalEnvironment.h"
 #include "ConAPIProx/GetKey.h"
+#include "StringUtiliy.h"
+#include <vector>
 
 using std::cin;
 using std::cout;
 using ColorfulConsole::ces;
+using std::vector;
 
 namespace Hyt
 {
@@ -20,12 +23,12 @@ namespace Hyt
 		using GloEnv = ColorfulConsole::GlobalEnvironment;
 		using TAttr = ColorfulConsole::TextAttribute::WarpedTextAttr;
 		using ColorfulConsole::Color;
-		
+
 		Position begin = Positioner::GetCursorPosition();
 		Position current = begin;
 		if (useCES) cout << ces << queryWord; else cout << queryWord;
 		//char temp;
-		
+
 		cout << "\n";
 		current = Positioner::GetCursorPosition();
 		cout << "确认|取消\n";
@@ -71,9 +74,54 @@ namespace Hyt
 	{
 		return YesNoQuery(queryWord, true);
 	}
+	int QueryFlow::ShowMenu(const string& content)
+	{
+		vector<string> temp = StringSplit(content, "\n");
+		return ShowMenu(temp);
+	}
+	int QueryFlow::ShowMenu(const vector<string> contents)
+	{
+		using namespace ConAPIProx;
+		int row = contents.size();
+		int index = 0;
+		Position beginPos = Positioner::GetCursorPosition();
+		Position endPos;
+		bool canExit = false;
+		do
+		{
+			Positioner::SetCursorPosition(beginPos);
+			for (int i = 0; i < row; i++)
+			{
+				if (index == i) cout << ces << "[&1" << contents[i] << ces << "&r]←\n";
+				else cout << ces << "&r|" << contents[i] << ces << "| \n";
+				endPos = Positioner::GetCursorPosition();
+			}
+			switch (GetKey())
+			{
+			case KeyCodes::DownArrow:
+			case KeyCodes::RightArrow:
+				if (index == row - 1) index = 0;
+				else index++;
+				break;
+			case KeyCodes::UpArrow:
+			case KeyCodes::LeftArrow:
+				if (index == 0) index = row - 1;
+				else index--;
+				break;
+			case KeyCodes::Enter:
+				canExit = true;
+				break;
+			default:
+				cout << ' ';
+				break;
+			}
+		} while (!canExit);
+
+		return index;
+	}
 	int QueryFlow::SaveInput_int(const std::string& queryWord, const std::string& failWord, const bool& useCES)
 	{
-		return BasicTypeInput<int>(queryWord,failWord,useCES);
+		return BasicTypeInput<int>(queryWord, failWord, useCES);
 	}
 	float QueryFlow::SaveInput_float(const std::string& queryWord, const std::string& failWord, const bool& useCES)
 	{

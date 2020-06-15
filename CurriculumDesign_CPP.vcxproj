@@ -188,6 +188,7 @@
     <ClCompile Include="polyfit\polyfit.c" />
     <ClCompile Include="PolyFuncData.cpp" />
     <ClCompile Include="QueryFlow.cpp" />
+    <ClCompile Include="StringUtiliy.h" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserMgr.cpp" />
     <ClCompile Include="UserOper.cpp" />
