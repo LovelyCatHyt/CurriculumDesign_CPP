@@ -60,4 +60,20 @@ namespace Hyt
 		LoginOrRegister(mgr, currentUser, temp);
 		return temp;
 	}
+	void UserOper::DataInput(const User& currentUser, PolyFuncData& data)
+	{
+		//TODO
+	}
+	void UserOper::SearchData(const User& currentUser, const PolyFuncData& data)
+	{
+		//TODO
+	}
+	void UserOper::GenerateFitArgs(const User& currentUser, PolyFuncData& data)
+	{
+		//TODO
+	}
+	void UserOper::EditData(const User& currentUser, PolyFuncData& data)
+	{
+		//TODO
+	}
 }

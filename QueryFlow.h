@@ -35,6 +35,7 @@ namespace Hyt
 	public:
 		//只用回答是或否
 		static bool YesNoQuery(const string& queryWord, const bool& useCES = true);
+		//是否继续?
 		static bool IfContinue(const string& queryWord = "是否继续?&8(方向键控制, 回车确定)");
 		static int SaveInput_int(const std::string& queryWord = "", const std::string& failWord = "", const bool& useCES = true);
 		static float SaveInput_float(const std::string& queryWord = "", const std::string& failWord = "", const bool& useCES = true);
