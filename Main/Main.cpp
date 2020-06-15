@@ -36,7 +36,7 @@ int main()
 
 	string userName;
 	string pw;
-	bool success;
+	//bool success;
 	User* currentUser = NULL;
 
 	UserOper::LoginOrRegister(users, currentUser);

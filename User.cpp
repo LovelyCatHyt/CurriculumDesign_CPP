@@ -77,7 +77,7 @@ namespace Hyt
 		unsigned int outLen = 0;
 
 		AES aes(256);
-		char* c = (char*)aes.EncryptECB(plain, plainLen, key, outLen);
+		unsigned char* c = aes.EncryptECB(plain, plainLen, key, outLen);
 
 		char* t = new char[outLen + 1];
 		memcpy(t, c, outLen);
@@ -85,8 +85,8 @@ namespace Hyt
 		
 		std::string result = std::string(t);
 		
-		free(c);
-		free(t);
+		delete[] c;
+		delete[] t;
 		
 		return base64_encode(result);
 	}

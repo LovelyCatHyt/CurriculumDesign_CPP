@@ -76,7 +76,7 @@ namespace Hyt
 		//Input All
 		argsList.clear();
 		if (useOutput) cout << ces << "请输入&1" << count << ces << "&r个参数:\n>";
-		for (int i = 0; i < count; i++)
+		for (uint i = 0; i < count; i++)
 		{
 			double temp;
 			cin >> temp;
@@ -127,7 +127,7 @@ namespace Hyt
 		//}
 		vector<double> realY(count), fitY(count);
 		double sqrDelta = 0;//偏差的平方和
-		for (int i = 0; i < count; i++)
+		for (uint i = 0; i < count; i++)
 		{
 			//真实值
 			realY[i] = GetPolyFuncValue(samples_X[i], argsList);
