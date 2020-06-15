@@ -4,9 +4,9 @@ namespace ConAPIProx
 {
 	enum KeyCodes { UpArrow = 38, LeftArrow = 37, DownArrow = 40, RightArrow = 39, Enter = 13, Esc = 27};
 	/*
-	è·å–ä¸€ä¸ªæŒ‰é”®, æŒ‰ä¸‹ç«‹å³å“åº”
-	è¿”å›å€¼ä¸ºæŒ‰ä¸‹å­—æ¯çš„asciiå€¼
-	å¦‚æœæŒ‰é”®æ¯”è¾ƒç‰¹æ®Š(å¦‚ä¸Šä¸‹å·¦å³), è¿”å›å€¼åœ¨KeyCodesä¸­
+	»ñÈ¡Ò»¸ö°´¼ü, °´ÏÂÁ¢¼´ÏìÓ¦
+	·µ»ØÖµÎª°´ÏÂ×ÖÄ¸µÄasciiÖµ
+	Èç¹û°´¼ü±È½ÏÌØÊâ(ÈçÉÏÏÂ×óÓÒ), ·µ»ØÖµÔÚKeyCodesÖĞ
 	*/
 	int GetKey(void(*refreshFunc)() = 0);
 	//int GetArrows(void(*refreshFunc)() = 0);

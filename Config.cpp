@@ -1,10 +1,10 @@
-﻿#include "Config.h"								//Self
+#include "Config.h"								//Self
 
 #include "FileIO.h"								//Read/Write
 #include <iostream>								//cout
 #include <string>								//string
 #include "json/json.hpp"
-#include "ColorwithJSON.h"						//json ↔ Color
+#include "ColorwithJSON.h"						//json & Color
 #include "ColorfulConsole/GlobalEnvironment.h"	//GlobalEnvironment
 
 using namespace ColorfulConsole;

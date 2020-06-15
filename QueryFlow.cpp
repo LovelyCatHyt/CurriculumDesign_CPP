@@ -1,4 +1,4 @@
-ï»¿#include "QueryFlow.h"
+#include "QueryFlow.h"
 #include <iostream>							//cout, cin
 #include <string>							//string
 #include "ColorfulConsole/CloEscString.h"	//ces
@@ -28,13 +28,13 @@ namespace Hyt
 		
 		cout << "\n";
 		current = Positioner::GetCursorPosition();
-		cout << "ç¡®è®¤|å–æ¶ˆ\n";
+		cout << "È·ÈÏ|È¡Ïû\n";
 		Rect leftZone(current, current + Position{ 3,0 });
 		Rect rightZone(current + Position{ 5,0 }, current + Position{ 8,0 });
 		AttrBrash::SetRectForeColor(leftZone, Color(1));
 		AttrBrash::SetRectForeColor(rightZone, Color(8));
 		bool yes = true;
-		//æŒ‰é”®åˆ¤æ–­
+		//°´¼üÅÐ¶Ï
 		bool getAction = false;
 		while (!getAction)
 		{
@@ -60,7 +60,7 @@ namespace Hyt
 		//cin >> temp;
 		//if (cin.bad() || cin.eof() || cin.fail())
 		//{
-		//	//æ¸…é™¤è¾“å…¥å¹¶è¿”å›žfalse
+		//	//Çå³ýÊäÈë²¢·µ»Øfalse
 		//	cin.clear();
 		//	return false;
 		//}

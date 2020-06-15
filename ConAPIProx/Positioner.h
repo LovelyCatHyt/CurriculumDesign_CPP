@@ -4,7 +4,7 @@
 
 namespace ConAPIProx
 {
-	//定位器: 方便控制控制台的光标位置
+	//��λ��: ������ƿ���̨�Ĺ��λ��
 	class Positioner
 	{
 		static HANDLE GetHandle();

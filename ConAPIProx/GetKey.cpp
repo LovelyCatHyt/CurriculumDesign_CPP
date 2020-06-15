@@ -27,7 +27,7 @@ namespace ConAPIProx
 			_putch(' ');
 			Positioner::ShiftCursorPosition({ -1, 0 });
 		}
-		if (temp == KeyCodes::Esc) _putch('a'); //Esc琚玙getche()璇诲彇鏃朵細瀵艰嚧鍚庨潰涓�涓瓧绗﹁鍚炴帀 澶糠鎯戜簡
+		if (temp == KeyCodes::Esc) _putch('a'); //Esc被_getche()读取时会导致后面一个字符被吞掉 太迷惑了
 		return temp;
 	}
 	/*int GetArrows(void(*refreshFunc)())

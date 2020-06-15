@@ -29,7 +29,7 @@ namespace Hyt
 	{
 		if (ExistUser(newUser.userName))
 		{
-			//存在则返回false
+			//麓忙脭脷脭貌路碌禄脴false
 			return false;
 		}
 		else

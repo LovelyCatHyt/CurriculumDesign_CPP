@@ -1,4 +1,4 @@
-ï»¿#include <iostream>								//cin, cout, endl
+#include <iostream>								//cin, cout, endl
 #include <iomanip>								//setw
 
 #include "../ColorfulConsole/CloEscString.h"	//ces
@@ -27,24 +27,23 @@ const string userFile = "TestData/Users.json";
 int main()
 {
 	Config cfg = Config::GetConfig(configFile);
-	cout << "é…ç½®å·²è¯»å–.\n";
+	cout << "ÅäÖÃÒÑ¶ÁÈ¡.\n";
 	cfg.Init();
-	cout << "é…ç½®åˆå§‹åŒ–å®Œæˆ.\n";
+	cout << "ÅäÖÃ³õÊ¼»¯Íê³É.\n";
 
-	//èŽ·å–ç”¨æˆ·æ•°æ®
+	//»ñÈ¡ÓÃ»§Êý¾Ý
 	UserMgr users = UserMgr::GetUsersFromFile(userFile);
 
 	string userName;
 	string pw;
-	//bool success;
 	User* currentUser = NULL;
 
 	UserOper::LoginOrRegister(users, currentUser);
 
-	cout << ces << "&9æ¬¢è¿Ž" << currentUser->Name() << ces << "ä½¿ç”¨æœ¬ç³»ç»Ÿ!&r\n";
+	cout << ces << "&9»¶Ó­" << currentUser->Name() << ces << "Ê¹ÓÃ±¾ÏµÍ³!&r\n";
 
 	DataMgr mgr = DataMgr::ReadFromFile(currentUser->DataName());
-	if (Hyt::QueryFlow::YesNoQuery("æ˜¯å¦è¾“å…¥æ•°æ®?")) mgr.Input();
+	if (Hyt::QueryFlow::YesNoQuery("ÊÇ·ñÊäÈëÊý¾Ý?")) mgr.Input();
 	mgr.Print();
 	mgr.GenerateSamples();
 	mgr.SaveToFile(currentUser->DataName());
