@@ -5,6 +5,7 @@
 #include "libbcrypt/include/bcrypt/BCrypt.hpp"
 #include "AES/AES.h"
 #include "cpp-base64/base64.h"
+#include "PicoSHA2/picosha2.h"
 
 namespace Hyt
 {
@@ -14,7 +15,6 @@ namespace Hyt
 		j["userName"] = user.userName;
 		j["dataName"] = user.dataName;
 		j["access_cipher"] = user.access_cipher;
-		j["secretKey"] = user.secretKey;
 	}
 	void from_json(const json& j, User& user)
 	{
@@ -22,7 +22,6 @@ namespace Hyt
 		j["userName"].get_to(user.userName);
 		j["dataName"].get_to(user.dataName);
 		j["access_cipher"].get_to(user.access_cipher);
-		j["secretKey"].get_to(user.secretKey);
 	}
 	User::User(const std::string& userName, const std::string& pw, const std::string& dataName) :
 		userName(userName), pwHash(BCrypt::generateHash(pw)), dataName(dataName)
@@ -65,19 +64,9 @@ namespace Hyt
 	}
 	std::string User::GenerateSecretKey(const std::string& pw)
 	{
-		if (secretKey.size() == 0)
-		{
-			std::default_random_engine e;
-			for (int i = 0; i <= 64; i++)
-			{
-				int p = e() % (26 + 26 + 10);
-
-				if (p < 26) secretKey += ('A' + p);
-				else if (p < 26 + 26) secretKey += ('a' + p - 26);
-				else secretKey += ('a' + p - 26 - 26);
-			}
-		}
-		return secretKey;
+		std::vector<unsigned char> hash(picosha2::k_digest_size);
+		picosha2::hash256(pw.begin(), pw.end(), hash.begin(), hash.end());		
+		return secretKey = picosha2::bytes_to_hex_string(hash.begin(), hash.end());
 	}
 	std::string Encrypt(const std::string& raw, const std::string& secretKey)
 	{
