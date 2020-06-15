@@ -74,12 +74,12 @@ namespace Hyt
 	{
 		return YesNoQuery(queryWord, true);
 	}
-	int QueryFlow::ShowMenu(const string& content)
+	int QueryFlow::ShowMenu(const string& content, const bool& useCES)
 	{
 		vector<string> temp = StringSplit(content, "\n");
-		return ShowMenu(temp);
+		return ShowMenu(temp, useCES);
 	}
-	int QueryFlow::ShowMenu(const vector<string> contents)
+	int QueryFlow::ShowMenu(const vector<string> contents, const bool& useCES)
 	{
 		using namespace ConAPIProx;
 		int row = contents.size();
@@ -92,8 +92,17 @@ namespace Hyt
 			Positioner::SetCursorPosition(beginPos);
 			for (int i = 0; i < row; i++)
 			{
-				if (index == i) cout << ces << "[&1" << contents[i] << ces << "&r]¡û\n";
-				else cout << ces << "&r|" << contents[i] << ces << "| \n";
+				if (useCES)
+				{
+					if (index == i) cout << ces << "&1¡ú<" << ces << contents[i] << ces << "&1>¡û&r\n";
+					else cout << ces << "&r  |" << ces << contents[i] << ces << "&r|  \n";
+				}
+				else
+				{
+					if (index == i) cout << ces << "&1¡ú<" << contents[i] << ces << "&1>¡û&r\n";
+					else cout << ces << "&r  |" << contents[i] << ces << "&r|  \n";
+				}
+
 				endPos = Positioner::GetCursorPosition();
 			}
 			switch (GetKey())
@@ -112,7 +121,7 @@ namespace Hyt
 				canExit = true;
 				break;
 			default:
-				cout << ' ';
+				//printf_s(" ");
 				break;
 			}
 		} while (!canExit);

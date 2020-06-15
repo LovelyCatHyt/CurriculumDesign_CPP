@@ -1,6 +1,7 @@
 #include "UserOper.h"
 #include "ColorfulConsole/CloEscString.h"
 #include "QueryFlow.h"
+#include "DataMgr.h"
 
 using std::string;
 using ColorfulConsole::ces;
@@ -15,7 +16,7 @@ namespace Hyt
 			//一个用户都没有, 那就创建一个Admin进去
 			mgr.Register(adminTemplate);
 		}
-		if (QueryFlow::YesNoQuery("是否登录?按确认登录, 否则注册新用户."))
+		if (QueryFlow::ShowMenu("登录\n注册", false) == 0)
 		{
 			//登录
 			string name;
@@ -50,7 +51,7 @@ namespace Hyt
 				dataName = name + "_data.json";
 				//默认当然是普通权限
 				mgr.Register(User(name, pw, dataName, 1));
-				currentUser = &mgr.FindUser(name,success);
+				currentUser = &mgr.FindUser(name, success);
 			} while (!success);
 		}
 	}
@@ -60,20 +61,57 @@ namespace Hyt
 		LoginOrRegister(mgr, currentUser, temp);
 		return temp;
 	}
-	void UserOper::DataInput(const User& currentUser, PolyFuncData& data)
+	void UserOper::DoOperations(User& currentUser, DataMgr& data)
 	{
-		//TODO
+		bool loop = true;
+		while (loop)
+		{
+
+			int flag = QueryFlow::ShowMenu({ "数据输入",
+				"数据搜索",
+				"生成拟合参数",
+				"编辑数据",
+				"&4退出系统" });
+			switch (flag)
+			{
+			case 0:
+				DataInput(currentUser, data);
+				break;
+			case 1:
+				SearchData(currentUser, data);
+				break;
+			case 2:
+				GenerateFitArgs(currentUser, data);
+				break;
+			case 3:
+				EditData(currentUser, data);
+				break;
+			case 4:
+				loop = !QueryFlow::YesNoQuery("&4是否退出程序?&r");
+				break;
+			default:
+				break;
+			}
+		}
 	}
-	void UserOper::SearchData(const User& currentUser, const PolyFuncData& data)
+	void UserOper::DataInput(const User& currentUser, DataMgr& data)
 	{
 		//TODO
+		data.Input();
 	}
-	void UserOper::GenerateFitArgs(const User& currentUser, PolyFuncData& data)
+	void UserOper::SearchData(const User& currentUser, const DataMgr& data)
 	{
 		//TODO
+		cout << ces << "&4Not implemented yet!\n";
 	}
-	void UserOper::EditData(const User& currentUser, PolyFuncData& data)
+	void UserOper::GenerateFitArgs(const User& currentUser, DataMgr& data)
 	{
 		//TODO
+		data.GenerateSamples();
+	}
+	void UserOper::EditData(const User& currentUser, DataMgr& data)
+	{
+		//TODO
+		cout << ces << "&4Not implemented yet!\n";
 	}
 }

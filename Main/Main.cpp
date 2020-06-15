@@ -42,12 +42,14 @@ int main()
 
 	cout << ces << "&9欢迎" << currentUser->Name() << ces << "使用本系统!&r\n";
 
-	DataMgr mgr = DataMgr::ReadFromFile(currentUser->DataName());
-	if (Hyt::QueryFlow::YesNoQuery("是否输入数据?")) mgr.Input();
-	mgr.Print();
-	mgr.GenerateSamples();
-	mgr.SaveToFile(currentUser->DataName());
+	DataMgr dataMgr = DataMgr::ReadFromFile(currentUser->DataName());
+	UserOper::DoOperations(*currentUser, dataMgr);
 
+	dataMgr.SaveToFile(currentUser->DataName());
+	cout << ces << "&8多项式数据已保存\n&r";
 	cfg.Save(configFile);
+	cout << ces << "&8配置数据已保存\n&r";
+
+	cout << ces << "&a感谢使用本系统!&r";
 	return 0;
 }

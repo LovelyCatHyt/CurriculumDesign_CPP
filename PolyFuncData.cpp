@@ -103,6 +103,16 @@ namespace Hyt
 	}
 	void PolyFuncData::GenerateSamples(uint count)
 	{
+		if (count <= 0)
+		{
+			cout << ces << "&4错误: 没有参数数据.\n&r";
+			return;
+		}
+		if (xmin == xmax)
+		{
+			cout << ces << "&4错误: 上下限相同\n&r";
+			return;
+		}
 		//清除样本
 		samples_X.clear(); samples_Y.clear();
 		srand(time(0));
@@ -172,7 +182,9 @@ namespace Hyt
 	}
 	double GetPolyFuncValue(double x, vector<double> argList, int startTerm)
 	{
-		return startTerm < argList.size() - 1 ?
+		if (startTerm > argList.size() - 1) return 0;
+		else 
+			return startTerm < argList.size() - 1 ?
 			argList[startTerm] + x * GetPolyFuncValue(x, argList, startTerm + 1) :
 			argList[startTerm];
 	}

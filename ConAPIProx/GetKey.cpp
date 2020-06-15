@@ -28,6 +28,10 @@ namespace ConAPIProx
 			Positioner::ShiftCursorPosition({ -1, 0 });
 		}
 		if (temp == KeyCodes::Esc) _putch('a'); //Esc被_getche()读取时会导致后面一个字符被吞掉 太迷惑了
+		//然后再去掉一个字符
+		Positioner::ShiftCursorPosition({ -1, 0 });
+		_putch(' ');
+		Positioner::ShiftCursorPosition({ -1, 0 });
 		return temp;
 	}
 	/*int GetArrows(void(*refreshFunc)())
