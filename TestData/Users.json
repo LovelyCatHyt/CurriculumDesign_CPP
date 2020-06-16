@@ -1,4 +1,10 @@
 {
     "users": [
+        {
+            "access_cipher": "rRRBlA8+nxDnc0DOefWnIA==",
+            "dataName": "TestData/Data1.json",
+            "pwHash": "$2a$12$0QEGM4arbM7nOw//ESPhXuZFz0SLA2VFOLi531syIw2lParR8Gmk2",
+            "userName": "Admin"
+        }
     ]
 }

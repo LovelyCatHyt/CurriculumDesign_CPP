@@ -67,7 +67,8 @@ namespace Hyt
 		while (loop)
 		{
 
-			int flag = QueryFlow::ShowMenu({ "数据输入",
+			int flag = QueryFlow::ShowMenu({ "显示数据",
+				"数据输入",
 				"数据搜索",
 				"生成拟合参数",
 				"编辑数据",
@@ -75,18 +76,22 @@ namespace Hyt
 			switch (flag)
 			{
 			case 0:
-				DataInput(currentUser, data);
+				ShowData(data);
+				
 				break;
 			case 1:
-				SearchData(currentUser, data);
+				DataInput(currentUser, data);
 				break;
 			case 2:
-				GenerateFitArgs(currentUser, data);
+				SearchData(currentUser, data); 
 				break;
 			case 3:
-				EditData(currentUser, data);
+				GenerateFitArgs(currentUser, data); 
 				break;
 			case 4:
+				EditData(currentUser, data); 
+				break;
+			case 5:
 				loop = !QueryFlow::YesNoQuery("&4是否退出程序?&r");
 				break;
 			default:
@@ -96,7 +101,6 @@ namespace Hyt
 	}
 	void UserOper::DataInput(const User& currentUser, DataMgr& data)
 	{
-		//TODO
 		data.Input();
 	}
 	void UserOper::SearchData(const User& currentUser, const DataMgr& data)
@@ -111,7 +115,16 @@ namespace Hyt
 	}
 	void UserOper::EditData(const User& currentUser, DataMgr& data)
 	{
-		//TODO
-		cout << ces << "&4Not implemented yet!\n";
+		//WORKING
+		cout << "当前数据如下: \n";
+		data.Print();
+		int index = QueryFlow::CheckedInput_int("请输入要编辑的数据的编号, 从0开始:\n>", "", "不存在该编号!", [&data](int num) {return num >= 0 && num < data.Count(); });
+		cout << "Get an valid index: " << index << '\n';
+		data.Edit(index);
+		
+	}
+	void UserOper::ShowData(const DataMgr& data)
+	{
+		data.Print();
 	}
 }

@@ -12,6 +12,7 @@
 
 
 //#define DEBUG
+#define AUTOADMINLOGIN
 
 using std::cout;
 using std::cin;
@@ -33,12 +34,21 @@ int main()
 
 	//获取用户数据
 	UserMgr users = UserMgr::GetUsersFromFile(userFile);
-
+	
+	User* currentUser = NULL;
+	
+#ifdef AUTOADMINLOGIN
+	bool temp;
+	currentUser = &users.Login("Admin", "114514", temp);
+	cout << ces << "&1[Auto Admin Login]&r\n";
+#else
 	string userName;
 	string pw;
-	User* currentUser = NULL;
 
 	UserOper::LoginOrRegister(users, currentUser);
+#endif // AUTOADMINLOGIN
+
+	
 
 	cout << ces << "&9欢迎" << currentUser->Name() << ces << "使用本系统!&r\n";
 

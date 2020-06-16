@@ -41,9 +41,9 @@ namespace Hyt
 			index++;
 		}
 	}
-	void DataMgr::Print()
+	void DataMgr::Print() const
 	{
-		cout << ces << "&9当前数据&r如下:\n";
+		cout << ces << "&8当前数据如下:&r\n";
 		cout << ces << "总数据量: &1" << dataList.size() << ces << "&r条\n";
 		for (uint i = 0; i < dataList.size(); i++)
 		{
@@ -53,7 +53,7 @@ namespace Hyt
 		}
 		cout << ces << "&a--------------------&r数据输出完毕&a------------------------------------&r\n";
 	}
-	void DataMgr::SaveToFile(const string& fileName)
+	void DataMgr::SaveToFile(const string& fileName) const
 	{
 		WriteAll(fileName, json(*this).dump(4));
 	}
@@ -67,6 +67,15 @@ namespace Hyt
 			cout << '\n';
 		}
 		cout << ces << "&a--------------------&r参数辨识完毕&a------------------------------------&r\n";
+	}
+	void DataMgr::Edit(const int& index)
+	{
+		cout << ces << "正在编辑编号为&1" << index << ces << "&r的数据\n";
+		dataList[index].Edit();
+	}
+	int DataMgr::Count() const
+	{
+		return dataList.size();
 	}
 	void to_json(json& j, const DataMgr& mgr)
 	{

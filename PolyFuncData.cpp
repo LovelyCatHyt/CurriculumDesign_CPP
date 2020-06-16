@@ -6,10 +6,11 @@
 #include "ColorfulConsole/CloEscString.h"		//ces
 #include "polyfit/polyfit.h"					//polyfit
 #include "QueryFlow.h"							//QueryFlow
+#include <iomanip>								//std:setw()
 
 using std::vector;
-using std::cout;
-using std::cin;
+using std::cout;	using std::cin;
+using std::setw;	using std::setfill;
 using namespace ColorfulConsole;
 
 namespace Hyt
@@ -23,8 +24,8 @@ namespace Hyt
 		int i = 0;
 		while (id < list.size())
 		{
-			if (withID) cout << ces << "&8[" << id << ces << "]&r ";
-			cout << list[id] << ' ';
+			if (withID) cout << ces << "&8[" << std::right << setfill('0') << setw(2) << id << ces << "]&r ";
+			cout << setfill(' ') << setw(5) << list[id] << ' ';
 			if (i == 4)
 			{
 				cout << '\n';
@@ -84,11 +85,13 @@ namespace Hyt
 		}
 		if (useOutput) cout << count << "个参数已输入完毕.\n";
 	}
-	void PolyFuncData::Print(const bool& withTag, const DetailLevel& level)
+	void PolyFuncData::Print(const bool& withTag, const DetailLevel& level) const
 	{
-		if (withTag) cout << ces << "项数 &2最小值    &4最大值&r\n";
-		using std::setw;
-		cout << std::left << setw(5) << argsList.size() << setw(10) << xmin << setw(10) << xmax << '\n';
+		if (withTag)
+		{
+			cout << ces << "项数: " << std::left << setw(5) << argsList.size();
+			cout << ces << "&2最小值&r:&2 " << setw(10) << xmin << ces << "&4最大值&r:&4 " << setw(10) << xmax << ces << "&r\n";
+		}
 		switch (level)
 		{
 		case DetailLevel::Default:
@@ -152,11 +155,29 @@ namespace Hyt
 		rms = sqrt(sqrDelta);
 		cout << ces << "拟合均方差: " << rms << "\n";
 		//Debug
-		
+
+	}
+	void PolyFuncData::Edit()
+	{
+		PolyFuncData temp;
+		temp.Input(true);
+		cout << ces << "&2原数据&r:\n";
+		Print(true);
+		cout << ces << "&2新数据&r:\n";
+		temp.Print(true);
+		if (QueryFlow::YesNoQuery("是否确认本次编辑?"))
+		{
+			*this = temp;
+			cout << ces << "&8新数据已保存.\n&r";
+		}
+		else
+		{
+			cout << ces << "&8原数据未发生变化.\n";
+		}
 	}
 	/*void PolyFuncData::Print(const bool& withTag, const DetailLevel& level)
 	{
-		
+
 	}*/
 	void to_json(nlohmann::json& j, const PolyFuncData& data)
 	{
@@ -183,10 +204,10 @@ namespace Hyt
 	double GetPolyFuncValue(double x, vector<double> argList, int startTerm)
 	{
 		if (startTerm > argList.size() - 1) return 0;
-		else 
+		else
 			return startTerm < argList.size() - 1 ?
 			argList[startTerm] + x * GetPolyFuncValue(x, argList, startTerm + 1) :
 			argList[startTerm];
 	}
-	
+
 }

@@ -9,6 +9,7 @@
 #include "ConAPIProx/GetKey.h"
 #include "StringUtiliy.h"
 #include <vector>
+#include <functional>
 
 using std::cin;
 using std::cout;
@@ -127,6 +128,10 @@ namespace Hyt
 		} while (!canExit);
 
 		return index;
+	}
+	int QueryFlow::CheckedInput_int(const string& queryWord, const string& failWord, const string& invalidWord, std::function<bool(int)> checkFunc, const bool& useCES)
+	{
+		return CheckedInput<int>(queryWord, failWord, invalidWord, checkFunc, useCES);
 	}
 	int QueryFlow::SaveInput_int(const std::string& queryWord, const std::string& failWord, const bool& useCES)
 	{

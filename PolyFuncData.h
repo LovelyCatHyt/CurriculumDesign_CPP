@@ -43,9 +43,11 @@ namespace Hyt
 		//与用户进行交互, 输入数据
 		void Input(const bool& useOutput = false);
 		//输出数据到cout
-		void Print(const bool& withTag = false, const enum DetailLevel& level = DetailLevel::Default);
+		void Print(const bool& withTag = false, const enum DetailLevel& level = DetailLevel::Default) const;
 		//生成样本数据
 		void GenerateSamples(uint count = 50);
+		//编辑数据
+		void Edit();
 		friend void to_json(json& j, const PolyFuncData& data);
 		friend void from_json(const json& j, PolyFuncData& data);
 	};
