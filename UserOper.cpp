@@ -115,7 +115,6 @@ namespace Hyt
 	}
 	void UserOper::EditData(const User& currentUser, DataMgr& data)
 	{
-		//WORKING
 		cout << "当前数据如下: \n";
 		data.Print();
 		int index = QueryFlow::CheckedInput_int("请输入要编辑的数据的编号, 从0开始:\n>", "", "不存在该编号!", [&data](int num) {return num >= 0 && num < data.Count(); });

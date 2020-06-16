@@ -47,7 +47,7 @@ namespace Hyt
 		cout << ces << "总数据量: &1" << dataList.size() << ces << "&r条\n";
 		for (uint i = 0; i < dataList.size(); i++)
 		{
-			cout << ces << "第&1" << i << ces << "&r个数据:\n";
+			cout << ces << "[&1" << i << ces << "&r]: ";
 			dataList[i].Print(true);
 			cout << '\n';
 		}

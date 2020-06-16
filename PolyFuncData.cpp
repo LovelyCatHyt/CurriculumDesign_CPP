@@ -7,6 +7,7 @@
 #include "polyfit/polyfit.h"					//polyfit
 #include "QueryFlow.h"							//QueryFlow
 #include <iomanip>								//std:setw()
+#include "StringUtiliy.h"
 
 using std::vector;
 using std::cout;	using std::cin;
@@ -76,6 +77,7 @@ namespace Hyt
 		cin >> xmin >> xmax;
 		//Input All
 		argsList.clear();
+
 		if (useOutput) cout << ces << "请输入&1" << count << ces << "&r个参数:\n>";
 		for (uint i = 0; i < count; i++)
 		{
@@ -84,12 +86,14 @@ namespace Hyt
 			argsList.push_back(temp);
 		}
 		if (useOutput) cout << count << "个参数已输入完毕.\n";
+		if (useOutput) cout << "请输入多项式的名称: \n>";
+		cin >> name;
 	}
 	void PolyFuncData::Print(const bool& withTag, const DetailLevel& level) const
 	{
 		if (withTag)
 		{
-			cout << ces << "项数: " << std::left << setw(5) << argsList.size();
+			cout << ces('r') << name << ": 项数: " << std::left << setw(5) << argsList.size();
 			cout << ces << "&2最小值&r:&2 " << setw(10) << xmin << ces << "&4最大值&r:&4 " << setw(10) << xmax << ces << "&r\n";
 		}
 		switch (level)
@@ -182,10 +186,10 @@ namespace Hyt
 	void to_json(nlohmann::json& j, const PolyFuncData& data)
 	{
 		j = nlohmann::json{
+			{"name" ,GBKToUTF8(data.name.c_str())}, //json取出来的是utf8, 要转码
 			{"xmin",data.xmin},
 			{"xmax",data.xmax},
 			{"argsList",data.argsList},
-			//{"fitArgsList",data.fitArgsList},
 			{"samples_X",data.samples_X},
 			{"samples_Y",data.samples_Y},
 			{"rms",data.rms}
@@ -193,10 +197,11 @@ namespace Hyt
 	}
 	void from_json(const nlohmann::json& j, PolyFuncData& data)
 	{
+		j["name"].get_to(data.name);
+		data.name = UTF8ToGBK(data.name.c_str()); //json要用到utf8, 转回去
 		data.xmin = j["xmin"];
 		data.xmax = j["xmax"];
 		j.at("argsList").get_to<vector<double>>(data.argsList);
-		//j.at("fitArgsList").get_to<vector<double>>(data.fitArgsList);
 		j.at("samples_X").get_to<vector<double>>(data.samples_X);
 		j.at("samples_Y").get_to<vector<double>>(data.samples_Y);
 		data.rms = j["rms"];

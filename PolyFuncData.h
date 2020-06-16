@@ -4,9 +4,11 @@
 #include <vector>
 #include "json/json.hpp"	//json
 #include "DataMgr.h"		//DataMgr
+#include <string>			//string
 
 using uint = unsigned int;
 using nlohmann::json;
+using std::string;
 
 namespace Hyt
 {
@@ -20,6 +22,8 @@ namespace Hyt
 	class PolyFuncData
 	{
 	private:
+		//多项式的名字
+		string name;
 		//x最小值
 		double xmin;
 		//x最大值
