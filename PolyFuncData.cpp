@@ -108,7 +108,7 @@ namespace Hyt
 	{
 		if (withTag)
 		{
-			cout << ces('r') << name << ": 项数: " << std::left << setw(5) << argsList.size();
+			cout << ces('r') << setw(20) << std::left << name << ": 项数: " << setw(5) << argsList.size();
 			cout << ces << "&2最小值&r:&2 " << setw(10) << xmin << ces << "&4最大值&r:&4 " << setw(10) << xmax << ces << "&r\n";
 		}
 		switch (level)
