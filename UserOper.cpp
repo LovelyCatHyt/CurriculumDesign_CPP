@@ -105,12 +105,47 @@ namespace Hyt
 	}
 	void UserOper::SearchData(const User& currentUser, const DataMgr& data)
 	{
-		//TODO
-		cout << ces << "&4Not implemented yet!\n";
+		cout << "请选择查询方式:\n";
+		int menuValue = QueryFlow::ShowMenu(vector<string>{"按名称关键字查询",
+			"按项数查询"});
+		string keyWord;
+		int argCount;
+		DataMgr temp;
+		switch (menuValue)
+		{
+		case 0:
+			cout << "请输入要查询的关键字:\n>";
+			cin >> keyWord;
+			temp = data.SearchData(keyWord);
+			if (temp.Count() == 0)
+			{
+				cout << ces << "未能找到名称为\"&6" << keyWord << ces << "&r\"的多项式!\n";
+			}
+			else
+			{
+				cout << "查询结果:\n";
+				temp.Print();
+			}
+			break;
+		case 1:
+			cout << "请输入要查询的多项式项数:\n>";
+			cin >> argCount;
+			temp = data.SearchData(argCount);
+			if (temp.Count() == 0)
+			{
+				cout << ces << "未能找到项数为\"&6" << argCount << ces << "&r\"的多项式!\n";
+			}
+			else
+			{
+				cout << "查询结果:\n";
+				temp.Print();
+			}
+			break;
+		}
 	}
 	void UserOper::GenerateFitArgs(const User& currentUser, DataMgr& data)
 	{
-		//TODO
+		//TODO:分开两个功能是不是更好?
 		data.GenerateSamples();
 	}
 	void UserOper::EditData(const User& currentUser, DataMgr& data)

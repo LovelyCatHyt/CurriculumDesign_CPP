@@ -38,8 +38,8 @@ namespace Hyt
 		double rms;
 	public:
 		friend class DataMgr;
-		PolyFuncData(const double& xmin = 0, const double& xmax = 1, uint count = 1);
-		PolyFuncData(const std::vector<double>& argsList, const double& xmin = 0, const double& xmax = 1);
+		PolyFuncData(const double& xmin = 0, const double& xmax = 1, uint count = 1, const string& name = "");
+		PolyFuncData(const std::vector<double>& argsList, const double& xmin = 0, const double& xmax = 1, const string& name = "");
 		//根据多项式获取一个值
 		double GetValue(double x);
 		//根据多项式在定义域内取一个值, 超出则返回NaN

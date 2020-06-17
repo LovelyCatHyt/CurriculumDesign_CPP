@@ -181,6 +181,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Test_DataMgr.cpp" />
     <ClCompile Include="Test_Else.cpp" />
     <Text Include="Test_Template.cpp" />
     <ClCompile Include="Test_PolyFuncData.cpp" />

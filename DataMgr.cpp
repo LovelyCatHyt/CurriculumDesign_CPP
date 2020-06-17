@@ -11,7 +11,7 @@ using ColorfulConsole::ces;
 
 namespace Hyt
 {
-	DataMgr::DataMgr() : dataList()
+	DataMgr::DataMgr(vector<PolyFuncData> dataList) : dataList(dataList)
 	{
 
 	}
@@ -43,7 +43,6 @@ namespace Hyt
 	}
 	void DataMgr::Print() const
 	{
-		cout << ces << "&8当前数据如下:&r\n";
 		cout << ces << "总数据量: &1" << dataList.size() << ces << "&r条\n";
 		for (uint i = 0; i < dataList.size(); i++)
 		{
@@ -56,6 +55,26 @@ namespace Hyt
 	void DataMgr::SaveToFile(const string& fileName) const
 	{
 		WriteAll(fileName, json(*this).dump(4));
+	}
+	DataMgr DataMgr::SearchData(const string& keyWord) const
+	{
+		DataMgr temp;
+		for (auto data : dataList)
+		{
+			//关键字则添加进去
+			if (data.name.find(keyWord) != string::npos) temp.dataList.push_back(data);
+		}
+		return temp;
+	}
+	DataMgr DataMgr::SearchData(const unsigned int& argCount) const
+	{
+		DataMgr temp;
+		for (auto data : dataList)
+		{
+			//项数符合条件则添加进去
+			if (data.argsList.size() == argCount) temp.dataList.push_back(data);
+		}
+		return temp;
 	}
 	void DataMgr::GenerateSamples()
 	{

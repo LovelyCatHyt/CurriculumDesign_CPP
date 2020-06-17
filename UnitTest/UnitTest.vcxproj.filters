@@ -30,6 +30,9 @@
     <ClCompile Include="Test_PolyFuncData.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Test_DataMgr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

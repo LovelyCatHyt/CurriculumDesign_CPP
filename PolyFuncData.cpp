@@ -37,16 +37,31 @@ namespace Hyt
 		}
 	}
 
-	PolyFuncData::PolyFuncData(const double& xmin, const double& xmax, uint count) : xmin(xmin), xmax(xmax), rms(0)
+	PolyFuncData::PolyFuncData(const double& xmin, const double& xmax, uint count, const string& name) : xmin(xmin), xmax(xmax), rms(0)
 	{
 		argsList = vector<double>(count);
 		samples_X = vector<double>(0);
 		samples_Y = vector<double>(0);
+		if (name.empty())
+		{
+			char temp[10] = "";
+			_itoa_s(count, temp, 10);
+			this->name = temp;
+		}
+		else this->name = name;
+
 	}
-	PolyFuncData::PolyFuncData(const vector<double>& argsList, const double& xmin, const double& xmax) : argsList(argsList), xmin(xmin), xmax(xmax), rms(0)
+	PolyFuncData::PolyFuncData(const vector<double>& argsList, const double& xmin, const double& xmax, const string& name) : argsList(argsList), xmin(xmin), xmax(xmax), rms(0)
 	{
 		samples_X = vector<double>(0);
 		samples_Y = vector<double>(0);
+		if (name.empty())
+		{
+			char temp[10] = "";
+			_itoa_s(argsList.size(), temp, 10);
+			this->name = temp;
+		}
+		else this->name = name;
 	}
 	double PolyFuncData::GetValue(double x)
 	{
