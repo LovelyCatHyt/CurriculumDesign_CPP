@@ -30,7 +30,7 @@ namespace Hyt
 	}
 	void DataMgr::Input()
 	{
-		uint index = 0;
+		uint index = dataList.size();
 		bool ifContinue = true;
 		while (ifContinue)
 		{
