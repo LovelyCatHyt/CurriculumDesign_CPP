@@ -172,7 +172,7 @@ namespace Hyt
 		int index = QueryFlow::CheckedInput_int("请输入要删除的数据编号:\n>", 
 			"数据错误!请输入整数.", 
 			"编号越界!请输入正确的编号", 
-			[&](int i) {return i >= 0 && i <= data.Count(); });
+			[&](int i) {return i >= 0 && i < data.Count(); });
 		data.DeleteData(index);
 	}
 }
