@@ -23,7 +23,7 @@ namespace Hyt
 		//数据搜索
 		static void SearchData(const DataMgr& data);
 		//生成随机数据
-		static void GenerateFitArgs(DataMgr& data);
+		static void ArgsFiting(DataMgr& data);
 		//编辑数据
 		static void EditData(DataMgr& data);
 		//打印数据

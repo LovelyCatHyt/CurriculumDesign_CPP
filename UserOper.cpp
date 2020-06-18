@@ -66,11 +66,11 @@ namespace Hyt
 		bool loop = true;
 		while (loop)
 		{
-
+			cout << "请选择要使用的功能:\n";
 			int flag = QueryFlow::ShowMenu({ "显示数据",
 				"数据输入",
 				"数据搜索",
-				"生成拟合参数",
+				"数据拟合",
 				"编辑数据",
 				"删除数据",
 				"&4退出系统" });
@@ -87,7 +87,7 @@ namespace Hyt
 				SearchData(data); 
 				break;
 			case 3:
-				GenerateFitArgs(data); 
+				ArgsFiting(data); 
 				break;
 			case 4:
 				EditData(data); 
@@ -147,10 +147,29 @@ namespace Hyt
 			break;
 		}
 	}
-	void UserOper::GenerateFitArgs(DataMgr& data)
+	void UserOper::ArgsFiting(DataMgr& data)
 	{
-		//TODO:分开两个功能是不是更好?
-		data.GenerateSamples();
+		cout << "请选择要进行的具体操作:\n";
+		int flag = QueryFlow::ShowMenu(vector<string>{
+				"查看样本数据",
+				"生成样本数据",
+				"计算拟合参数",
+				"返回主菜单  "});
+		switch (flag)
+		{
+		case 0:
+			data.ShowSamples();
+			break;
+		case 1:
+			data.ShowSamples();
+			break;
+		case 2:
+			data.FitArgs();
+			break;
+		default:
+			cout <<ces<< "&8数据拟合功能已退出\n";
+			break;
+		}
 	}
 	void UserOper::EditData(DataMgr& data)
 	{

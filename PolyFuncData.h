@@ -36,6 +36,7 @@ namespace Hyt
 		std::vector<double> samples_Y;
 		//偏差均方根
 		double rms;
+		std::vector<double> fitArgs;
 	public:
 		friend class DataMgr;
 		PolyFuncData(const double& xmin = 0, const double& xmax = 1, uint count = 1, const string& name = "");
@@ -50,6 +51,10 @@ namespace Hyt
 		void Print(const bool& withTag = false, const enum DetailLevel& level = DetailLevel::Default) const;
 		//生成样本数据
 		void GenerateSamples(uint count = 50);
+		//打印样本数据
+		void ShowSamples();
+		//参数拟合
+		void FitArgs();
 		//编辑数据
 		void Edit();
 		friend void to_json(json& j, const PolyFuncData& data);

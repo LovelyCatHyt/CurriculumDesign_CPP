@@ -77,11 +77,29 @@ namespace Hyt
 	}
 	void DataMgr::GenerateSamples()
 	{
-		cout << ces << "&8正在辨识参数...&r\n";
+		cout << ces << "&8正在生成样本...&r\n";
 		for (int i = 0; i < dataList.size(); i++)
 		{
 			cout << "[" << i << "]: ";
 			dataList[i].GenerateSamples();
+			cout << '\n';
+		}
+	}
+	void DataMgr::ShowSamples()
+	{
+		for (int i = 0; i < dataList.size(); i++)
+		{
+			cout << "[" << i << "]: ";
+			dataList[i].ShowSamples();
+			cout << '\n';
+		}
+	}
+	void DataMgr::FitArgs()
+	{
+		for (int i = 0; i < dataList.size(); i++)
+		{
+			cout << "[" << i << "]: ";
+			dataList[i].FitArgs();
 			cout << '\n';
 		}
 	}

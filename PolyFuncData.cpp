@@ -19,15 +19,15 @@ namespace Hyt
 	enum DetailLevel;
 
 	template <typename T>
-	inline void PrintDataList(const vector<T>& list, const int& countPerRow = 5, const bool& withID = true)
+	inline void PrintDataList(const vector<T>& list, const int& countPerRow = 8, const bool& withID = true)
 	{
 		int id = 0;
 		int i = 0;
 		while (id < list.size())
 		{
-			if (withID) cout << ces << "&8[" << std::right << setfill('0') << setw(2) << id << ces << "]&r ";
-			cout << setfill(' ') << setw(5) << list[id] << ' ';
-			if (i == 4)
+			if (withID) cout << ces << "&6[" << std::right << setfill('0') << setw(2) << id << ces << "]&r";
+			cout << setfill(' ') << std::left << setw(10) << list[id] << ' ';
+			if (i == (countPerRow - 1))
 			{
 				cout << '\n';
 				i = -1;
@@ -125,7 +125,7 @@ namespace Hyt
 	}
 	void PolyFuncData::GenerateSamples(uint count)
 	{
-		if (count <= 0)
+		if (argsList.size() <= 0)
 		{
 			cout << ces << "&4错误: 没有参数数据.\n&r";
 			return;
@@ -137,9 +137,9 @@ namespace Hyt
 		}
 		//清除样本
 		samples_X.clear(); samples_Y.clear();
+		//初始化随机种子
 		srand(time(0));
 		double step = (xmax - xmin) / count;
-		//cout << ces << "&1Samples generating...&r\n";
 		for (double x = xmin; x < xmax; x += step)
 		{
 			double r = rand() / 32768.0 - 0.5;
@@ -147,16 +147,25 @@ namespace Hyt
 			samples_Y.push_back(GetValue(x) + r);
 			//cout << x << ' ' << (GetValue(x) + r) << '\n';
 		}
-		vector<double> fitargs(argsList.size());
+		cout << '\"' << name << "\"样本数据已生成\n";
+
+
+
+
+	}
+	void PolyFuncData::ShowSamples()
+	{
+		cout << ces('1') << samples_Y.size() << "个样本y如下:\n";
+		PrintDataList(samples_Y);
+	}
+	void PolyFuncData::FitArgs()
+	{
+		uint count = samples_X.size();
+		//重置fitArgs
+		fitArgs.clear();
+		fitArgs.resize(argsList.size());
 		//调用一个轮子进行参数辨识 注意这里的order是指阶数, "y=x+1" 阶数为1
-		polyfit(samples_X.begin()._Ptr, samples_Y.begin()._Ptr, count, argsList.size() - 1, fitargs.begin()._Ptr);
-		//if (/*QueryFlow::YesNoQuery("&8是否输出&r辨识数据?\n>")*/true)
-		//{
-		//	for (int i = 0; i < fitargs.size(); i++)
-		//	{
-		//		cout << i << ' ' << fitargs[i] << '\n';
-		//	}
-		//}
+		polyfit(samples_X.begin()._Ptr, samples_Y.begin()._Ptr, count, argsList.size() - 1, fitArgs.begin()._Ptr);
 		vector<double> realY(count), fitY(count);
 		double sqrDelta = 0;//偏差的平方和
 		for (uint i = 0; i < count; i++)
@@ -164,17 +173,15 @@ namespace Hyt
 			//真实值
 			realY[i] = GetPolyFuncValue(samples_X[i], argsList);
 			//估计值
-			fitY[i] = GetPolyFuncValue(samples_X[i], fitargs);
+			fitY[i] = GetPolyFuncValue(samples_X[i], fitArgs);
 			double temp = realY[i] - fitY[i];
 			sqrDelta += temp * temp;
 		}
 		//打印数据
-		PrintDataList(fitargs);
+		PrintDataList(fitArgs);
 		cout << '\n';
 		rms = sqrt(sqrDelta);
 		cout << ces << "拟合均方差: " << rms << "\n";
-		//Debug
-
 	}
 	void PolyFuncData::Edit()
 	{

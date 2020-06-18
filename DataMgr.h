@@ -29,6 +29,10 @@ namespace Hyt
 		DataMgr SearchData(const unsigned int& argCount) const;
 		//生成样点
 		void GenerateSamples();
+		//打印样本数据
+		void ShowSamples();
+		//拟合数据
+		void FitArgs();
 		//编辑数据
 		void Edit(const int& index);
 		//删除数据
