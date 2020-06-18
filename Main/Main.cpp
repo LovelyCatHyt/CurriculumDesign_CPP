@@ -40,11 +40,8 @@ int main()
 #ifdef AUTOADMINLOGIN
 	bool temp;
 	currentUser = &users.Login("Admin", "114514", temp);
-	cout << ces << "&1[Auto Admin Login]&r\n";
+	cout << ces << "&4[Auto Admin Login]&r\n";
 #else
-	string userName;
-	string pw;
-
 	UserOper::LoginOrRegister(users, currentUser);
 #endif // AUTOADMINLOGIN
 

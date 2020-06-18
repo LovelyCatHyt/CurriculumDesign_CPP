@@ -92,6 +92,21 @@ namespace Hyt
 		cout << ces << "正在编辑编号为&1" << index << ces << "&r的数据\n";
 		dataList[index].Edit();
 	}
+	void DataMgr::DeleteData(int index)
+	{
+		cout << "要删除的数据为:\n";
+		dataList[index].Print(true);
+		if (QueryFlow::YesNoQuery("确定要&4删除&r该数据吗?"))
+		{
+			dataList.erase(dataList.begin() + index);
+			cout << ces << "&8数据已删除\n";
+		}
+		else
+		{
+			cout << ces << "&8数据未发生变化\n";
+		}
+
+	}
 	int DataMgr::Count() const
 	{
 		return dataList.size();

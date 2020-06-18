@@ -28,6 +28,8 @@ namespace Hyt
 		static void EditData(const User& currentUser, DataMgr& data);
 		//打印数据
 		static void ShowData(const DataMgr& data);
+		//删除数据
+		static void DeleteData(DataMgr& data);
 	};
 }
 

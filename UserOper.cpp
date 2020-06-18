@@ -72,6 +72,7 @@ namespace Hyt
 				"数据搜索",
 				"生成拟合参数",
 				"编辑数据",
+				"删除数据",
 				"&4退出系统" });
 			switch (flag)
 			{
@@ -92,6 +93,9 @@ namespace Hyt
 				EditData(currentUser, data); 
 				break;
 			case 5:
+				DeleteData(data);
+				break;
+			case 6:
 				loop = !QueryFlow::YesNoQuery("&4是否退出程序?&r");
 				break;
 			default:
@@ -160,5 +164,15 @@ namespace Hyt
 	void UserOper::ShowData(const DataMgr& data)
 	{
 		data.Print();
+	}
+	void UserOper::DeleteData(DataMgr& data)
+	{
+		cout << "当前数据如下:\n";
+		data.Print();
+		int index = QueryFlow::CheckedInput_int("请输入要删除的数据编号:\n>", 
+			"数据错误!请输入整数.", 
+			"编号越界!请输入正确的编号", 
+			[&](int i) {return i >= 0 && i <= data.Count(); });
+		data.DeleteData(index);
 	}
 }

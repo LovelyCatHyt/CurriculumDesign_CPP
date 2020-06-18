@@ -31,6 +31,8 @@ namespace Hyt
 		void GenerateSamples();
 		//编辑数据
 		void Edit(const int& index);
+		//删除数据
+		void DeleteData(int index);
 		//数据个数
 		int Count() const;
 		friend void to_json(json& j, const DataMgr& mgr);
