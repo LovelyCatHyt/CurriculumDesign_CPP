@@ -50,7 +50,6 @@ namespace Hyt
 			dataList[i].Print(true);
 			cout << '\n';
 		}
-		cout << ces << "&a--------------------&r数据输出完毕&a------------------------------------&r\n";
 	}
 	void DataMgr::SaveToFile(const string& fileName) const
 	{
@@ -85,7 +84,6 @@ namespace Hyt
 			dataList[i].GenerateSamples();
 			cout << '\n';
 		}
-		cout << ces << "&a--------------------&r参数辨识完毕&a------------------------------------&r\n";
 	}
 	void DataMgr::Edit(const int& index)
 	{

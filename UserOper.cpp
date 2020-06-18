@@ -81,16 +81,16 @@ namespace Hyt
 				
 				break;
 			case 1:
-				DataInput(currentUser, data);
+				DataInput(data);
 				break;
 			case 2:
-				SearchData(currentUser, data); 
+				SearchData(data); 
 				break;
 			case 3:
-				GenerateFitArgs(currentUser, data); 
+				GenerateFitArgs(data); 
 				break;
 			case 4:
-				EditData(currentUser, data); 
+				EditData(data); 
 				break;
 			case 5:
 				DeleteData(data);
@@ -103,11 +103,11 @@ namespace Hyt
 			}
 		}
 	}
-	void UserOper::DataInput(const User& currentUser, DataMgr& data)
+	void UserOper::DataInput(DataMgr& data)
 	{
 		data.Input();
 	}
-	void UserOper::SearchData(const User& currentUser, const DataMgr& data)
+	void UserOper::SearchData(const DataMgr& data)
 	{
 		cout << "请选择查询方式:\n";
 		int menuValue = QueryFlow::ShowMenu(vector<string>{"按名称关键字查询",
@@ -147,17 +147,16 @@ namespace Hyt
 			break;
 		}
 	}
-	void UserOper::GenerateFitArgs(const User& currentUser, DataMgr& data)
+	void UserOper::GenerateFitArgs(DataMgr& data)
 	{
 		//TODO:分开两个功能是不是更好?
 		data.GenerateSamples();
 	}
-	void UserOper::EditData(const User& currentUser, DataMgr& data)
+	void UserOper::EditData(DataMgr& data)
 	{
 		cout << "当前数据如下: \n";
 		data.Print();
 		int index = QueryFlow::CheckedInput_int("请输入要编辑的数据的编号, 从0开始:\n>", "", "不存在该编号!", [&data](int num) {return num >= 0 && num < data.Count(); });
-		cout << "Get an valid index: " << index << '\n';
 		data.Edit(index);
 		
 	}
