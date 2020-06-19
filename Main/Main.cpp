@@ -12,7 +12,7 @@
 
 
 //#define DEBUG
-#define AUTOADMINLOGIN
+//#define AUTOADMINLOGIN
 
 using std::cout;
 using std::cin;
@@ -34,7 +34,7 @@ int main()
 
 	//获取用户数据
 	UserMgr users = UserMgr::GetUsersFromFile(userFile);
-	
+	UserOper::Init(&users);
 	User* currentUser = NULL;
 	
 #ifdef AUTOADMINLOGIN
@@ -42,7 +42,7 @@ int main()
 	currentUser = &users.Login("Admin", "114514", temp);
 	cout << ces << "&4[Auto Admin Login]&r\n";
 #else
-	UserOper::LoginOrRegister(users, currentUser);
+	UserOper::LoginOrRegister(currentUser);
 #endif // AUTOADMINLOGIN
 
 	
@@ -50,7 +50,7 @@ int main()
 	cout << ces << "&9欢迎" << currentUser->Name() << ces << "使用本系统!&r\n";
 
 	DataMgr dataMgr = DataMgr::ReadFromFile(currentUser->DataName());
-	UserOper::DoOperations(*currentUser, dataMgr);
+	UserOper::DoOperations(currentUser, dataMgr);
 
 	dataMgr.SaveToFile(currentUser->DataName());
 	cout << ces << "&8多项式数据已保存\n&r";

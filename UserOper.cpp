@@ -8,13 +8,18 @@ using ColorfulConsole::ces;
 
 namespace Hyt
 {
+	UserMgr* UserOper::users = NULL;
 	User adminTemplate = User("Admin", "123456", "TestData/Data1.json");
-	void UserOper::LoginOrRegister(UserMgr& mgr, User*& currentUser, bool& success)
+	void UserOper::Init(UserMgr* usersPtr)
 	{
-		if (mgr.UserCount() == 0)
+		users = usersPtr;
+	}
+	void UserOper::LoginOrRegister(User*& currentUser, bool& success)
+	{
+		if (users->UserCount() == 0)
 		{
 			//一个用户都没有, 那就创建一个Admin进去
-			mgr.Register(adminTemplate);
+			users->Register(adminTemplate);
 		}
 		if (QueryFlow::ShowMenu("登录\n注册", false) == 0)
 		{
@@ -27,8 +32,8 @@ namespace Hyt
 			cout << "请输入密码:\n>";
 			cin >> pw;
 			cout << ces << "&8可能需要片刻进行验证, 请耐心等待!\n";
-			mgr.Login(name, pw, success);
-			currentUser = &mgr.FindUser(name, success);
+			users->Login(name, pw, success);
+			currentUser = &users->FindUser(name, success);
 		}
 		else
 		{
@@ -40,7 +45,7 @@ namespace Hyt
 			{
 				cout << "请输入用户名:\n>";
 				cin >> name;
-				if (mgr.ExistUser(name))
+				if (users->ExistUser(name))
 				{
 					cout << ces << "用户\"&4" << name << ces << "&r\"已存在! 请重新输入.\n";
 					success = false;
@@ -50,18 +55,18 @@ namespace Hyt
 				cin >> pw;
 				dataName = name + "_data.json";
 				//默认当然是普通权限
-				mgr.Register(User(name, pw, dataName, 1));
-				currentUser = &mgr.FindUser(name, success);
+				users->Register(User(name, pw, dataName, 1));
+				currentUser = &users->FindUser(name, success);
 			} while (!success);
 		}
 	}
-	bool UserOper::LoginOrRegister(UserMgr& mgr, User*& currentUser)
+	bool UserOper::LoginOrRegister(User*& currentUser)
 	{
 		bool temp;
-		LoginOrRegister(mgr, currentUser, temp);
+		LoginOrRegister(currentUser, temp);
 		return temp;
 	}
-	void UserOper::DoOperations(User& currentUser, DataMgr& data)
+	void UserOper::DoOperations(User*& currentUser, DataMgr& data)
 	{
 		bool loop = true;
 		while (loop)
@@ -73,29 +78,33 @@ namespace Hyt
 				"数据拟合",
 				"编辑数据",
 				"删除数据",
+				"用户中心",
 				"&4退出系统" });
 			switch (flag)
 			{
 			case 0:
 				ShowData(data);
-				
+
 				break;
 			case 1:
 				DataInput(data);
 				break;
 			case 2:
-				SearchData(data); 
+				SearchData(data);
 				break;
 			case 3:
-				ArgsFiting(data); 
+				ArgsFiting(data);
 				break;
 			case 4:
-				EditData(data); 
+				EditData(data);
 				break;
 			case 5:
 				DeleteData(data);
 				break;
 			case 6:
+				UsersCenter(currentUser, *users);
+				break;
+			case 7:
 				loop = !QueryFlow::YesNoQuery("&4是否退出程序?&r");
 				break;
 			default:
@@ -151,7 +160,7 @@ namespace Hyt
 	{
 		cout << "请选择要进行的具体操作:\n";
 		int flag = QueryFlow::ShowMenu(vector<string>{
-				"查看样本数据",
+			"查看样本数据",
 				"生成样本数据",
 				"计算拟合参数",
 				"返回主菜单  "});
@@ -167,7 +176,7 @@ namespace Hyt
 			data.FitArgs();
 			break;
 		default:
-			cout <<ces<< "&8数据拟合功能已退出\n";
+			cout << ces << "&8数据拟合功能已退出\n";
 			break;
 		}
 	}
@@ -177,7 +186,7 @@ namespace Hyt
 		data.Print();
 		int index = QueryFlow::CheckedInput_int("请输入要编辑的数据的编号, 从0开始:\n>", "", "不存在该编号!", [&data](int num) {return num >= 0 && num < data.Count(); });
 		data.Edit(index);
-		
+
 	}
 	void UserOper::ShowData(const DataMgr& data)
 	{
@@ -187,10 +196,80 @@ namespace Hyt
 	{
 		cout << "当前数据如下:\n";
 		data.Print();
-		int index = QueryFlow::CheckedInput_int("请输入要删除的数据编号:\n>", 
-			"数据错误!请输入整数.", 
-			"编号越界!请输入正确的编号", 
+		int index = QueryFlow::CheckedInput_int("请输入要删除的数据编号:\n>",
+			"数据错误!请输入整数.",
+			"编号越界!请输入正确的编号",
 			[&](int i) {return i >= 0 && i < data.Count(); });
 		data.DeleteData(index);
+	}
+	void UserOper::UsersCenter(User*& currentUser, UserMgr& users)
+	{
+		cout << "请选择要使用的功能:\n";
+		int flag = 0;
+		//TODO: 用户中心
+		switch (currentUser->Access())
+		{
+		case 0:
+			//Admin
+			flag = QueryFlow::ShowMenu(vector<string>{"修改密码", "修改用户名", "管理员模块", "登出", "返回主菜单"});
+			switch (flag)
+			{
+			case 0:
+				ChangePW(*currentUser);
+				break;
+			case 1:
+				ChangeName(*currentUser);
+				break;
+			case 2:
+				ManagerModule(*currentUser);
+				break;
+			case 3:
+				Logout(currentUser);
+				break;
+			default:
+				//Nothing
+				break;
+			}
+			break;
+		case 1:
+			//Normal
+			flag = QueryFlow::ShowMenu(vector<string>{"修改密码", "修改用户名", "登出", "返回主菜单"});
+			switch (flag)
+			{
+			case 0:
+				ChangePW(*currentUser);
+				break;
+			case 1:
+				ChangeName(*currentUser);
+				break;
+			case 2:
+				Logout(currentUser);
+				break;
+			default:
+				//Nothing
+				break;
+			}
+			break;
+		}
+	}
+	void UserOper::ChangePW(User& currentUser)
+	{
+		//TODO
+		cout << "ChangePW not implemented yet.\n";
+	}
+	void UserOper::ChangeName(User& currentUser)
+	{
+		//TODO
+		cout << "ChangeName not implemented yet.\n";
+	}
+	void UserOper::Logout(User*& currentUser)
+	{
+		//TODO
+		cout << "Logout not implemented yet.\n";
+	}
+	void UserOper::ManagerModule(User& currentUser)
+	{
+		//TODO
+		cout << "ManagerModule not implemented yet.\n";
 	}
 }
