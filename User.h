@@ -19,7 +19,10 @@ namespace Hyt
 		User(const std::string& userName, const std::string& pw, const std::string& dataName, const int& access);
 		bool Verify(const std::string& pw);
 		void RefreshPw(const std::string& pw);
+		//获取用户名
 		std::string Name();
+		//设置用户名, 返回新设置的用户名
+		std::string Name(std::string newName);
 		std::string DataName();
 		//根据密文获取权限数, 0: Admin, 1: Normal
 		int Access();

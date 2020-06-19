@@ -54,6 +54,10 @@ namespace Hyt
 	{
 		return userName;
 	}
+	std::string User::Name(std::string newName)
+	{
+		return userName = newName;
+	}
 	std::string User::DataName()
 	{
 		return this->dataName;

@@ -21,26 +21,32 @@ namespace Hyt
 			//一个用户都没有, 那就创建一个Admin进去
 			users->Register(adminTemplate);
 		}
-		if (QueryFlow::ShowMenu("登录\n注册", false) == 0)
+		string name;
+		string pw;
+		string dataName;
+		switch (QueryFlow::ShowMenu("登录\n注册\n退出", false))
 		{
+		case 0:
 			//登录
-			string name;
-			string pw;
-			string dataName;
-			cout << "请输入用户名:\n>";
-			cin >> name;
-			cout << "请输入密码:\n>";
-			cin >> pw;
-			cout << ces << "&8可能需要片刻进行验证, 请耐心等待!\n";
-			users->Login(name, pw, success);
-			currentUser = &users->FindUser(name, success);
-		}
-		else
-		{
+			success = false;
+			while (!success)
+			{
+				cout << "请输入用户名:\n>";
+				cin >> name;
+				cout << "请输入密码:\n>";
+				cin >> pw;
+				cout << ces << "&8可能需要片刻进行验证, 请耐心等待!\n";
+				users->Login(name, pw, success);
+				if (!success)
+				{
+					cout << ces << "&4用户名或密码错误!&r\n";
+					continue;
+				}
+				currentUser = &users->FindUser(name, success);
+			}
+			break;
+		case 1:
 			//注册
-			string name;
-			string pw;
-			string dataName;
 			do
 			{
 				cout << "请输入用户名:\n>";
@@ -58,7 +64,15 @@ namespace Hyt
 				users->Register(User(name, pw, dataName, 1));
 				currentUser = &users->FindUser(name, success);
 			} while (!success);
-		}
+			break;
+		case 2:
+			//退出
+			currentUser == NULL;
+			success = false;
+			break;
+		} 
+			
+		
 	}
 	bool UserOper::LoginOrRegister(User*& currentUser)
 	{
@@ -66,7 +80,7 @@ namespace Hyt
 		LoginOrRegister(currentUser, temp);
 		return temp;
 	}
-	void UserOper::DoOperations(User*& currentUser, DataMgr& data)
+	int UserOper::DoOperations(User*& currentUser, DataMgr& data)
 	{
 		bool loop = true;
 		while (loop)
@@ -105,11 +119,17 @@ namespace Hyt
 				UsersCenter(currentUser, *users);
 				break;
 			case 7:
-				loop = !QueryFlow::YesNoQuery("&4是否退出程序?&r");
+				if (QueryFlow::YesNoQuery("&4是否退出程序?&r")) return 0;
 				break;
 			default:
 				break;
 			}
+			if (currentUser == NULL)
+			{
+				loop = false;	//以注销的形式退出
+				return 1;
+			}
+				
 		}
 	}
 	void UserOper::DataInput(DataMgr& data)
@@ -202,11 +222,11 @@ namespace Hyt
 			[&](int i) {return i >= 0 && i < data.Count(); });
 		data.DeleteData(index);
 	}
+
 	void UserOper::UsersCenter(User*& currentUser, UserMgr& users)
 	{
 		cout << "请选择要使用的功能:\n";
 		int flag = 0;
-		//TODO: 用户中心
 		switch (currentUser->Access())
 		{
 		case 0:
@@ -251,21 +271,42 @@ namespace Hyt
 			}
 			break;
 		}
+		//if (currentUser == NULL)
+		//{
+		//	//已登出
+		//	//好像啥也不用干
+		//}
 	}
 	void UserOper::ChangePW(User& currentUser)
 	{
-		//TODO
-		cout << "ChangePW not implemented yet.\n";
+		string pw_a = "", pw_b = "";
+		while (true)
+		{
+			cout << "请输入新密码:\n>";
+			cin >> pw_a;
+			cout << "请再输入一遍密码确认:\n>";
+			cin >> pw_b;
+			if (pw_a == pw_b) break;
+			//没break, 再来一次
+			cout << "两次输入密码不同!";
+		}
+		currentUser.RefreshPw(pw_a);
+		cout << "密码已修改!\n";
 	}
 	void UserOper::ChangeName(User& currentUser)
 	{
 		//TODO
-		cout << "ChangeName not implemented yet.\n";
+		string temp;
+		cout << "请输入新用户名:\n>";
+		cin >> temp;
+		cout << ces << "用户名已修改为&6\"" << currentUser.Name(temp) << ces << "\"&r\n";
 	}
 	void UserOper::Logout(User*& currentUser)
 	{
-		//TODO
-		cout << "Logout not implemented yet.\n";
+		if (QueryFlow::YesNoQuery("是否退出账号?"))
+		{
+			currentUser = NULL;
+		}
 	}
 	void UserOper::ManagerModule(User& currentUser)
 	{

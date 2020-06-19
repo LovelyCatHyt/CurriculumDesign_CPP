@@ -46,17 +46,42 @@ int main()
 #endif // AUTOADMINLOGIN
 
 	
-
-	cout << ces << "&9欢迎" << currentUser->Name() << ces << "使用本系统!&r\n";
-
-	DataMgr dataMgr = DataMgr::ReadFromFile(currentUser->DataName());
-	UserOper::DoOperations(currentUser, dataMgr);
-
-	dataMgr.SaveToFile(currentUser->DataName());
-	cout << ces << "&8多项式数据已保存\n&r";
-	cfg.Save(configFile);
-	cout << ces << "&8配置数据已保存\n&r";
-
-	cout << ces << "&a感谢使用本系统!&r";
+	if (currentUser != NULL)
+	{
+		cout << ces << "&9欢迎" << currentUser->Name() << ces << "使用本系统!&r\n";
+		string dataFile = currentUser->DataName();
+		DataMgr dataMgr = DataMgr::ReadFromFile(dataFile);
+		bool loop = true;
+		while (loop)
+		{
+			switch (UserOper::DoOperations(currentUser, dataMgr))
+			{
+			case 0:
+				//正常退出
+				loop = false;
+				break;
+			case 1:
+				//退出账户
+				if (!UserOper::LoginOrRegister(currentUser)) loop = false;
+				break;
+			default:
+				//?
+				break;
+			}
+		}
+		dataMgr.SaveToFile(dataFile);
+		cout << ces << "&8多项式数据已保存\n&r";
+		users.SaveToFile(userFile);
+		cout << ces << "&8用户信息已保存\n&r";
+		cfg.Save(configFile);
+		cout << ces << "&8配置数据已保存\n&r";
+		
+		cout << ces << "&a感谢使用本系统!&r";
+	}
+	else
+	{
+		cout << ces << "&8系统已退出&r\n";
+	}
+	
 	return 0;
 }

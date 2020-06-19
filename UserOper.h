@@ -21,8 +21,13 @@ namespace Hyt
 		*/
 		static void LoginOrRegister(User*& currentUser, bool& success);
 		static bool LoginOrRegister(User*& currentUser);
-		//显示菜单并执行任务, 返回true则任务执行完毕, 返回false则选择了退出系统
-		static void DoOperations(User*& currentUser, DataMgr& data);
+		/*
+		显示菜单并执行任务
+		0: 正常退出
+		1: 账户登出
+		其他: 意外情况发生
+		*/
+		static int DoOperations(User*& currentUser, DataMgr& data);
 	private:
 		//数据管理部分-----------------------------------------------------------------
 		//数据输入
