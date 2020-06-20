@@ -178,27 +178,33 @@ namespace Hyt
 	}
 	void UserOper::ArgsFiting(DataMgr& data)
 	{
-		cout << "请选择要进行的具体操作:\n";
-		int flag = QueryFlow::ShowMenu(vector<string>{
-			"查看样本数据",
-				"生成样本数据",
-				"计算拟合参数",
-				"返回主菜单  "});
-		switch (flag)
+		bool loop = true;
+		while (loop)
 		{
-		case 0:
-			data.ShowSamples();
-			break;
-		case 1:
-			data.ShowSamples();
-			break;
-		case 2:
-			data.FitArgs();
-			break;
-		default:
-			cout << ces << "&8数据拟合功能已退出\n";
-			break;
+			cout << "请选择要进行的具体操作:\n";
+			int flag = QueryFlow::ShowMenu(vector<string>{
+				"查看样本数据",
+					"生成样本数据",
+					"计算拟合参数",
+					"返回主菜单  "});
+			switch (flag)
+			{
+			case 0:
+				data.ShowSamples();
+				break;
+			case 1:
+				data.GenerateSamples();
+				break;
+			case 2:
+				data.FitArgs();
+				break;
+			default:
+				cout << ces << "&8数据拟合功能已退出&r\n";
+				loop = false;
+				break;
+			}
 		}
+		
 	}
 	void UserOper::EditData(DataMgr& data)
 	{

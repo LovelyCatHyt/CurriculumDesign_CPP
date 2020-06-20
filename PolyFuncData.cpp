@@ -142,7 +142,7 @@ namespace Hyt
 		double step = (xmax - xmin) / count;
 		for (double x = xmin; x < xmax; x += step)
 		{
-			double r = rand() / 32768.0 - 0.5;
+			double r = rand() / (double)RAND_MAX - 0.5;
 			samples_X.push_back(x);
 			samples_Y.push_back(GetValue(x) + r);
 			//cout << x << ' ' << (GetValue(x) + r) << '\n';
