@@ -155,7 +155,7 @@ namespace Hyt
 	}
 	void PolyFuncData::ShowSamples()
 	{
-		cout << ces('1') << samples_Y.size() << "个样本y如下:\n";
+		cout << name << ": " << ces('1') << samples_Y.size() << "个样本y如下:\n";
 		PrintDataList(samples_Y);
 	}
 	void PolyFuncData::FitArgs()
@@ -178,6 +178,7 @@ namespace Hyt
 			sqrDelta += temp * temp;
 		}
 		//打印数据
+		cout << name << ": \n";
 		PrintDataList(fitArgs);
 		cout << '\n';
 		rms = sqrt(sqrDelta);
