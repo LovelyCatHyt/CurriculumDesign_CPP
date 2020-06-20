@@ -1,6 +1,9 @@
 #include "QueryFlow.h"
 #include <iostream>							//cout, cin
 #include <string>							//string
+#include <vector>
+#include <functional>
+#include <sstream>							//istringstream
 #include "ColorfulConsole/CloEscString.h"	//ces
 #include "ConAPIProx/AttrBrash.h"			//SetRectColor
 #include "ConAPIProx/Rect.h"
@@ -8,11 +11,11 @@
 #include "ColorfulConsole/GlobalEnvironment.h"
 #include "ConAPIProx/GetKey.h"
 #include "StringUtiliy.h"
-#include <vector>
-#include <functional>
+
 
 using std::cin;
 using std::cout;
+using std::istringstream;
 using ColorfulConsole::ces;
 using std::vector;
 
@@ -88,6 +91,8 @@ namespace Hyt
 		Position beginPos = Positioner::GetCursorPosition();
 		Position endPos;
 		bool canExit = false;
+		char tempKey;
+		bool lastIsNumber = false;
 		do
 		{
 			Positioner::SetCursorPosition(beginPos);
@@ -106,25 +111,57 @@ namespace Hyt
 
 				endPos = Positioner::GetCursorPosition();
 			}
-			switch (GetKey())
+			tempKey = GetKey();
+			switch (tempKey)
 			{
 			case KeyCodes::DownArrow:
 			case KeyCodes::RightArrow:
+				//往下
 				if (index == row - 1) index = 0;
 				else index++;
 				break;
 			case KeyCodes::UpArrow:
 			case KeyCodes::LeftArrow:
+				//往上
 				if (index == 0) index = row - 1;
 				else index--;
+				break;
+			case KeyCodes::Home:
+				//到开头
+				index = 0;
+				break;
+			case KeyCodes::End:
+				//到结尾
+				index = contents.size() - 1;
 				break;
 			case KeyCodes::Enter:
 				canExit = true;
 				break;
 			default:
-				//printf_s(" ");
 				break;
 			}
+			//输入了数字
+			tempKey -= '0';
+			if (tempKey >= 0 && tempKey < contents.size())
+			{
+				if (!lastIsNumber)
+				{
+					index = tempKey;
+					lastIsNumber = true;
+				}
+				else
+				{
+					index = tempKey + index * 10;
+				}
+			}
+			else
+			{
+				lastIsNumber = false;
+			}
+			//防止溢出
+			if (index >= contents.size()) index = contents.size() - 1;
+			if (index < 0) index = 0;
+
 		} while (!canExit);
 
 		return index;

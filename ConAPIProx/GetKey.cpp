@@ -16,10 +16,12 @@ namespace ConAPIProx
 
 		if ((temp = _getche()) == 224)
 		{
-			switch (_getche())
+			switch (temp = _getche())
 			{
-			case 75:temp = KeyCodes::LeftArrow; break;
+			case 71:temp = KeyCodes::Home; break;
+			case 79:temp = KeyCodes::End; break;
 			case 72:temp = KeyCodes::UpArrow; break;
+			case 75:temp = KeyCodes::LeftArrow; break;
 			case 77:temp = KeyCodes::RightArrow; break;
 			case 80:temp = KeyCodes::DownArrow; break;
 			}
