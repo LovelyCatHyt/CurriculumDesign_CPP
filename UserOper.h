@@ -52,8 +52,8 @@ namespace Hyt
 		//登出
 		static void Logout(User*& currentUser);
 		//管理员模块(当然只有Admin才能使用)
-		static void ManagerModule(User& currentUser);
-		//TODO: 管理员模块其它功能
+		static void ManagerModule(User& currentUser, UserMgr& mgr);
+		static void DeleteUser(const std::string& currentUserName, UserMgr& mgr);
 	};
 }
 

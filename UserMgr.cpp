@@ -1,7 +1,11 @@
+#include <iostream>
+#include "ColorfulConsole/CloEscString.h"
 #include "UserMgr.h"
 #include "FileIO.h"
 #include "json/json.hpp"
-#include <iostream>
+
+using ColorfulConsole::ces;
+using std::cout;
 
 namespace Hyt
 {
@@ -37,6 +41,20 @@ namespace Hyt
 			usersList.push_back(newUser);
 			return true;
 		}
+	}
+	User& UserMgr::operator[](int index)
+	{
+		return usersList[index];
+	}
+	int UserMgr::GetUserIndex(std::string name)
+	{
+		//假定名字不重复
+		for (int i = 0; i < usersList.size(); i++)
+		{
+			if (usersList[i].userName == name) return i;
+		}
+		//不存在? 那就是-1
+		return -1;
 	}
 	bool UserMgr::ExistUser(std::string name)
 	{
@@ -77,6 +95,24 @@ namespace Hyt
 		{
 			success = false;
 			return *(User*)NULL;
+		}
+	}
+
+	void UserMgr::PrintUsers()
+	{
+		for (int i = 0; i < usersList.size(); i++)
+		{
+			std::cout << ces << "&6[" << i << ces << "]&r " << usersList[i].userName << '\n';
+		}
+	}
+
+	void UserMgr::DeleteUser(int index)
+	{
+		//先检查越界再删除
+		if (index > 0 && index < usersList.size()) usersList.erase(usersList.begin() + index);
+		else
+		{
+			cout << ces << "&4错误: 用户编号越界!\n";
 		}
 	}
 

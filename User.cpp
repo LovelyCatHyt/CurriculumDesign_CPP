@@ -83,7 +83,7 @@ namespace Hyt
 		AES aes(256);
 		unsigned char* c = aes.EncryptECB(plain, plainLen, key, outLen);
 
-		char* t = new char[outLen + 1];
+		char* t = new char[(unsigned long long)outLen + 1];
 		memcpy(t, c, outLen);
 		t[outLen] = 0;
 		

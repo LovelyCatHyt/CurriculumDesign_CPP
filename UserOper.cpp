@@ -1,3 +1,4 @@
+#include <sstream>
 #include "UserOper.h"
 #include "ColorfulConsole/CloEscString.h"
 #include "QueryFlow.h"
@@ -67,7 +68,7 @@ namespace Hyt
 			break;
 		case 2:
 			//退出
-			currentUser == NULL;
+			currentUser = NULL;
 			success = false;
 			break;
 		} 
@@ -131,6 +132,7 @@ namespace Hyt
 			}
 				
 		}
+		return -1;	//loop由于非常神奇的原因变成false, 或者while奇迹地脱离循环, 才会跑到这个地方
 	}
 	void UserOper::DataInput(DataMgr& data)
 	{
@@ -247,7 +249,7 @@ namespace Hyt
 				ChangeName(*currentUser);
 				break;
 			case 2:
-				ManagerModule(*currentUser);
+				ManagerModule(*currentUser, *UserOper::users);
 				break;
 			case 3:
 				Logout(currentUser);
@@ -314,9 +316,54 @@ namespace Hyt
 			currentUser = NULL;
 		}
 	}
-	void UserOper::ManagerModule(User& currentUser)
+	void UserOper::ManagerModule(User& currentUser, UserMgr &mgr)
 	{
-		//TODO
-		cout << "ManagerModule not implemented yet.\n";
+		int flag;
+		bool loop = true;
+		while (loop)
+		{
+			cout << "请选择要进行的用户操作: \n";
+			flag = QueryFlow::ShowMenu("显示用户信息\n删除用户\n退出用户管理");
+			switch (flag)
+			{
+			case 0:
+				cout << "当前存在的用户如下: \n";
+				mgr.PrintUsers();
+				break;
+			case 1:
+				DeleteUser(currentUser.Name(), mgr);
+				break;
+			case 2:
+				loop = false;
+				break;
+			}
+		}
 	}
+
+	void UserOper::DeleteUser(const string& currentUserName,UserMgr& mgr)
+	{
+		cout << "当前存在的用户如下: \n";
+		mgr.PrintUsers();
+		int index = QueryFlow::CheckedInput_int("请选择要删除的用户的编号:\n>", "&4数据类型错误!&r\n", "&4用户编号越界!\n&r", [&](int num) {
+			return num >= 0 && num < mgr.UserCount(); });
+		if (index == mgr.GetUserIndex(currentUserName))
+		{
+			//不能删自己
+			cout << ces << "&4错误: 不能删除自己!\n";
+			return;
+		}
+		std::ostringstream ostr;
+		ostr << "确定要删除编号为&6[" << index << "]&r的用户吗?";	ostr.flush();
+		if (QueryFlow::YesNoQuery(ostr.str()))
+		{
+			mgr.DeleteUser(index);
+			cout << "&8该用户已删除\n&r";
+		}
+		else
+		{
+			cout<<ces << "&8用户列表未发生变化\n&r";
+		}
+		
+	}
+	
 }
