@@ -141,17 +141,20 @@ namespace Hyt
 				break;
 			}
 			//输入了数字
+			//TODO: 这个输入方法体验还不是很好
 			tempKey -= '0';
 			if (tempKey >= 0 && tempKey < contents.size())
 			{
-				if (!lastIsNumber)
+				if (lastIsNumber)
 				{
-					index = tempKey;
-					lastIsNumber = true;
+					int temp = tempKey + index * 10;
+					if (temp < contents.size()) index = temp;
+					else index = tempKey;
 				}
 				else
 				{
-					index = tempKey + index * 10;
+					index = tempKey;
+					lastIsNumber = true;
 				}
 			}
 			else
