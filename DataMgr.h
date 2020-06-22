@@ -14,6 +14,8 @@ namespace Hyt
 	class DataMgr
 	{
 		vector<PolyFuncData> dataList;
+		//若已配置自动保存则保存
+		void AutoSaveIfConfigered();
 	public:
 		DataMgr(vector<PolyFuncData> dataList = {});
 		static DataMgr ReadFromFile(const string& fileName);

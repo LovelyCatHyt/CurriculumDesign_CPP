@@ -164,6 +164,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AES\AES.cpp" />
+    <ClCompile Include="ColorfulConsole\BackColorProxy.cpp" />
     <ClCompile Include="ColorfulConsole\CloEscString.cpp" />
     <ClCompile Include="ColorfulConsole\Color.cpp" />
     <ClCompile Include="ColorfulConsole\ForeColorProxy.cpp" />
@@ -196,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AES\AES.h" />
+    <ClInclude Include="ColorfulConsole\BackColorProxy.h" />
     <ClInclude Include="ColorfulConsole\CloEscString.h" />
     <ClInclude Include="ColorfulConsole\Color.h" />
     <ClInclude Include="ColorfulConsole\ForeColorProxy.h" />

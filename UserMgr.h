@@ -5,10 +5,13 @@
 
 namespace Hyt
 {
+	const std::string userFile = "TestData/Users.json";
 	//用户管理器
 	class UserMgr
 	{
 		std::vector<User> usersList;
+		//若已设置自动保存则保存
+		void AutoSaveIfConfigered();
 	public: 
 		UserMgr();
 		static UserMgr GetUsersFromFile(std::string fileName);

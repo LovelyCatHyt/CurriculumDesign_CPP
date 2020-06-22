@@ -141,6 +141,9 @@
     <ClCompile Include="StringUtiliy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ColorfulConsole\BackColorProxy.cpp">
+      <Filter>源文件\ColorfulConsole</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorfulConsole\TextAttrSetter.h">
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="PicoSHA2\picosha2.h">
       <Filter>源文件\PicoSHA2</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorfulConsole\BackColorProxy.h">
+      <Filter>头文件\ColorfulConsole</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

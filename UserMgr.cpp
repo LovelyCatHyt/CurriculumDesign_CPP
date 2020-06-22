@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "ColorfulConsole/CloEscString.h"
 #include "UserMgr.h"
 #include "FileIO.h"
@@ -6,9 +7,13 @@
 
 using ColorfulConsole::ces;
 using std::cout;
+extern std::string userFile;
 
 namespace Hyt
 {
+	void UserMgr::AutoSaveIfConfigered()
+	{
+	}
 	UserMgr::UserMgr() : usersList(0)
 	{
 	}
@@ -33,12 +38,13 @@ namespace Hyt
 	{
 		if (ExistUser(newUser.userName))
 		{
-			//´æÔÚÔò·µ»Øfalse
+			//已存在则返回false
 			return false;
 		}
 		else
 		{
 			usersList.push_back(newUser);
+			AutoSaveIfConfigered();
 			return true;
 		}
 	}
@@ -114,6 +120,7 @@ namespace Hyt
 		{
 			cout << ces << "&4错误: 用户编号越界!\n";
 		}
+		AutoSaveIfConfigered();
 	}
 
 	size_t UserMgr::UserCount()

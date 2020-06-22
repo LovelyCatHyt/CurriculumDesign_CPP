@@ -10,10 +10,6 @@
 #include "../UserMgr.h"							//UserMgr, User
 #include "../UserOper.h"						//UserOper
 
-
-//#define DEBUG
-//#define AUTOADMINLOGIN
-
 using std::cout;
 using std::cin;
 using std::endl;
@@ -22,46 +18,39 @@ using namespace nlohmann;
 using namespace Hyt;
 using namespace Hyt::Configration;
 
-const string configFile = "TestData/Config.json";
-const string userFile = "TestData/Users.json";
+extern const string Configration::configFile;
+extern const string Hyt::userFile;
+string currentDataFile = "";
 
 int main()
 {
-	Config cfg = Config::GetConfig(configFile);
-	cout << "ÅäÖÃÒÑ¶ÁÈ¡.\n";
+	Config& cfg = Config::GetConfigFromFile(configFile);
 	cfg.Init();
-	cout << "ÅäÖÃ³õÊ¼»¯Íê³É.\n";
+	cout << "ï¿½ï¿½ï¿½Ã³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½.\n";
 
-	//»ñÈ¡ÓÃ»§Êý¾Ý
+	//ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	UserMgr users = UserMgr::GetUsersFromFile(userFile);
 	UserOper::Init(&users);
 	User* currentUser = NULL;
 	
-#ifdef AUTOADMINLOGIN
-	bool temp;
-	currentUser = &users.Login("Admin", "114514", temp);
-	cout << ces << "&4[Auto Admin Login]&r\n";
-#else
 	UserOper::LoginOrRegister(currentUser);
-#endif // AUTOADMINLOGIN
-
 	
 	if (currentUser != NULL)
 	{
-		cout << ces << "&9»¶Ó­" << currentUser->Name() << ces << "Ê¹ÓÃ±¾ÏµÍ³!&r\n";
-		string dataFile = currentUser->DataName();
-		DataMgr dataMgr = DataMgr::ReadFromFile(dataFile);
+		cout << ces << "&9ï¿½ï¿½Ó­" << currentUser->Name() << ces << "Ê¹ï¿½Ã±ï¿½ÏµÍ³!&r\n";
+		currentDataFile = currentUser->DataName();
+		DataMgr dataMgr = DataMgr::ReadFromFile(currentDataFile);
 		bool loop = true;
 		while (loop)
 		{
 			switch (UserOper::DoOperations(currentUser, dataMgr))
 			{
 			case 0:
-				//Õý³£ÍË³ö
+				//ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½
 				loop = false;
 				break;
 			case 1:
-				//ÍË³öÕË»§
+				//ï¿½Ë³ï¿½ï¿½Ë»ï¿½
 				if (!UserOper::LoginOrRegister(currentUser)) loop = false;
 				break;
 			default:
@@ -69,18 +58,14 @@ int main()
 				break;
 			}
 		}
-		dataMgr.SaveToFile(dataFile);
-		cout << ces << "&8¶àÏîÊ½Êý¾ÝÒÑ±£´æ\n&r";
-		users.SaveToFile(userFile);
-		cout << ces << "&8ÓÃ»§ÐÅÏ¢ÒÑ±£´æ\n&r";
 		cfg.Save(configFile);
-		cout << ces << "&8ÅäÖÃÊý¾ÝÒÑ±£´æ\n&r";
+		cout << ces << "&8ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½ï¿½ï¿½\n&r";
 		
-		cout << ces << "&a¸ÐÐ»Ê¹ÓÃ±¾ÏµÍ³!&r";
+		cout << ces << "&aï¿½ï¿½Ð»Ê¹ï¿½Ã±ï¿½ÏµÍ³!&r";
 	}
 	else
 	{
-		cout << ces << "&8ÏµÍ³ÒÑÍË³ö&r\n";
+		cout << ces << "&8ÏµÍ³ï¿½ï¿½ï¿½Ë³ï¿½&r\n";
 	}
 	
 	return 0;

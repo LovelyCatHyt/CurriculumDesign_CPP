@@ -1,16 +1,26 @@
 #include <iostream>							//cout, cin
+#include <string>
 #include "DataMgr.h"
 #include "FileIO.h"							//FileIO
 #include "ColorfulConsole/CloEscString.h"	//ces
 #include "QueryFlow.h"						//QueryFlow
+#include "Config.h"
 
 using namespace Hyt::FileInOut;
 using std::cin;
 using std::cout;
 using ColorfulConsole::ces;
+extern std::string currentDataFile;
 
 namespace Hyt
 {
+	void DataMgr::AutoSaveIfConfigered()
+	{
+		if (Configration::Config::GetConfigRef().autoSave)
+		{
+			SaveToFile(currentDataFile);
+		}
+	}
 	DataMgr::DataMgr(vector<PolyFuncData> dataList) : dataList(dataList)
 	{
 
@@ -84,6 +94,7 @@ namespace Hyt
 			dataList[i].GenerateSamples();
 			cout << '\n';
 		}
+		AutoSaveIfConfigered();
 	}
 	void DataMgr::ShowSamples()
 	{
@@ -102,11 +113,13 @@ namespace Hyt
 			dataList[i].FitArgs();
 			cout << '\n';
 		}
+		AutoSaveIfConfigered();
 	}
 	void DataMgr::Edit(const int& index)
 	{
 		cout << ces << "正在编辑编号为&1" << index << ces << "&r的数据\n";
 		dataList[index].Edit();
+		AutoSaveIfConfigered();
 	}
 	void DataMgr::DeleteData(int index)
 	{
@@ -121,7 +134,7 @@ namespace Hyt
 		{
 			cout << ces << "&8数据未发生变化\n";
 		}
-
+		AutoSaveIfConfigered();
 	}
 	int DataMgr::Count() const
 	{

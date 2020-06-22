@@ -42,13 +42,15 @@ namespace Hyt
 		static void ShowData(const DataMgr& data);
 		//删除数据
 		static void DeleteData(DataMgr& data);
+		//设置
+		static void Configuring();
 		//用户管理部分-----------------------------------------------------------------
 		//用户中心
 		static void UsersCenter(User*& currentUser, UserMgr& users);
 		//改密码
-		static void ChangePW(User& currentUser);
+		static void ChangePW(User& currentUser, UserMgr& users);
 		//改用户名
-		static void ChangeName(User& currentUser);
+		static void ChangeName(User& currentUser, UserMgr& users);
 		//登出
 		static void Logout(User*& currentUser);
 		//管理员模块(当然只有Admin才能使用)

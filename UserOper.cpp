@@ -1,4 +1,5 @@
 #include <sstream>
+#include "Config.h"
 #include "UserOper.h"
 #include "ColorfulConsole/CloEscString.h"
 #include "QueryFlow.h"
@@ -6,6 +7,8 @@
 
 using std::string;
 using ColorfulConsole::ces;
+extern string configFile;
+extern string userFile;
 
 namespace Hyt
 {
@@ -99,7 +102,6 @@ namespace Hyt
 			{
 			case 0:
 				ShowData(data);
-
 				break;
 			case 1:
 				DataInput(data);
@@ -125,12 +127,16 @@ namespace Hyt
 			default:
 				break;
 			}
+			if (Configration::Config::GetConfigRef().autoSave)
+			{
+				users->SaveToFile(userFile);
+			}
 			if (currentUser == NULL)
 			{
 				loop = false;	//以注销的形式退出
 				return 1;
 			}
-				
+			
 		}
 		return -1;	//loop由于非常神奇的原因变成false, 或者while奇迹地脱离循环, 才会跑到这个地方
 	}
@@ -231,6 +237,28 @@ namespace Hyt
 		data.DeleteData(index);
 	}
 
+	void UserOper::Configuring()
+	{
+		int flag;
+		bool loop = true;
+		while (loop)
+		{
+			cout << "请选择要编辑的设置项:\n";
+			flag = QueryFlow::ShowMenu("前景色\n背景色\n自动保存");
+			switch (flag)
+			{
+			case 0:
+				//TODO
+				break;
+			case 1:break;
+			case 2:break;
+			default:
+				break;
+			}
+		}
+		
+	}
+
 	void UserOper::UsersCenter(User*& currentUser, UserMgr& users)
 	{
 		cout << "请选择要使用的功能:\n";
@@ -243,10 +271,10 @@ namespace Hyt
 			switch (flag)
 			{
 			case 0:
-				ChangePW(*currentUser);
+				ChangePW(*currentUser, users);
 				break;
 			case 1:
-				ChangeName(*currentUser);
+				ChangeName(*currentUser, users);
 				break;
 			case 2:
 				ManagerModule(*currentUser, *UserOper::users);
@@ -265,10 +293,10 @@ namespace Hyt
 			switch (flag)
 			{
 			case 0:
-				ChangePW(*currentUser);
+				ChangePW(*currentUser, users);
 				break;
 			case 1:
-				ChangeName(*currentUser);
+				ChangeName(*currentUser, users);
 				break;
 			case 2:
 				Logout(currentUser);
@@ -285,7 +313,7 @@ namespace Hyt
 		//	//好像啥也不用干
 		//}
 	}
-	void UserOper::ChangePW(User& currentUser)
+	void UserOper::ChangePW(User& currentUser, UserMgr& users)
 	{
 		string pw_a = "", pw_b = "";
 		while (true)
@@ -301,13 +329,16 @@ namespace Hyt
 		currentUser.RefreshPw(pw_a);
 		cout << "密码已修改!\n";
 	}
-	void UserOper::ChangeName(User& currentUser)
+	void UserOper::ChangeName(User& currentUser, UserMgr& users)
 	{
-		//TODO
 		string temp;
 		cout << "请输入新用户名:\n>";
 		cin >> temp;
 		cout << ces << "用户名已修改为&6\"" << currentUser.Name(temp) << ces << "\"&r\n";
+		if (Configration::Config::GetConfigRef().autoSave)
+		{
+			users.SaveToFile(userFile);
+		}
 	}
 	void UserOper::Logout(User*& currentUser)
 	{
