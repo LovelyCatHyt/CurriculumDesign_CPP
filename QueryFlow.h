@@ -66,6 +66,9 @@ namespace Hyt
 		static int ShowMenu(const string& content, const bool& useCES = true);
 		//显示一个菜单, 返回值为选项索引, contents一个元素显示一行
 		static int ShowMenu(const vector<string> contents, const bool& useCES = true);
+		//设置一个颜色
+		static ColorfulConsole::Color SetColor(const string& queryWord = "");
+		//带有效性检查的int输入, 通常用于输入数据编号
 		static int CheckedInput_int(const string& queryWord, const string& failWord, const string& invalidWord, std::function<bool(int)> checkFunc, const bool& useCES = true);
 		static int SaveInput_int(const string& queryWord = "", const string& failWord = "", const bool& useCES = true);
 		static float SaveInput_float(const string& queryWord = "", const string& failWord = "", const bool& useCES = true);

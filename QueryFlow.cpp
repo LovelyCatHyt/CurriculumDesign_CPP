@@ -9,6 +9,7 @@
 #include "ConAPIProx/Rect.h"
 #include "ConAPIProx/Positioner.h"			
 #include "ColorfulConsole/GlobalEnvironment.h"
+#include "ColorfulConsole/BackColorProxy.h"
 #include "ConAPIProx/GetKey.h"
 #include "StringUtiliy.h"
 
@@ -168,6 +169,64 @@ namespace Hyt
 		} while (!canExit);
 
 		return index;
+	}
+	ColorfulConsole::Color QueryFlow::SetColor(const string& queryWord)
+	{
+		using namespace ColorfulConsole;
+		using namespace ConAPIProx;
+		Color originBack = GlobalEnvironment::GetBack();
+		//颜色编号, 同时也是颜色码
+		int chosenIndex = 0;
+		Color currentBack = Color(chosenIndex);
+		//发出询问
+		cout << queryWord;
+		Position beginPosition = Positioner::GetCursorPosition();
+		int tempKey = 0;
+		bool loop = true;
+		while (loop)
+		{
+
+			Positioner::SetCursorPosition(beginPosition);
+			for (int i = 0; i < 16; i++)
+			{
+				//上色, 如果是选择的编号就加个'√'
+				cout << ColorfulConsole::TextAttribute::WarpedTextAttr(Color(i ^ 15), Color(i));
+				if (i == chosenIndex) cout << "√";
+				else cout << "  ";
+			}
+			tempKey = GetKey();
+			switch (tempKey)
+			{
+			case KeyCodes::RightArrow:
+				//--→
+				if (chosenIndex >= 15) chosenIndex = 0;
+				else chosenIndex++;
+				break;
+			case KeyCodes::LeftArrow:
+				//←--
+				if (chosenIndex <= 0) chosenIndex = 15;
+				else chosenIndex--;
+				break;
+			case KeyCodes::Enter:
+				//√
+				loop = false;
+				break;
+			case KeyCodes::Home:
+				//Home
+				chosenIndex = 0;
+				break;
+			case KeyCodes::End:
+				//End
+				chosenIndex = 15;
+				break;
+			default:
+				break;
+			}
+			currentBack = Color(chosenIndex);
+		}
+		//GlobalEnvironment::SetBack(originBack);
+		cout << '\n';
+		return Color(chosenIndex);
 	}
 	int QueryFlow::CheckedInput_int(const string& queryWord, const string& failWord, const string& invalidWord, std::function<bool(int)> checkFunc, const bool& useCES)
 	{

@@ -7,7 +7,7 @@
 
 using std::string;
 using ColorfulConsole::ces;
-extern string configFile;
+//extern const string Hyt::Configration::configFile;
 extern string userFile;
 
 namespace Hyt
@@ -97,6 +97,7 @@ namespace Hyt
 				"编辑数据",
 				"删除数据",
 				"用户中心",
+				"系统设置",
 				"&4退出系统" });
 			switch (flag)
 			{
@@ -122,9 +123,10 @@ namespace Hyt
 				UsersCenter(currentUser, *users);
 				break;
 			case 7:
-				if (QueryFlow::YesNoQuery("&4是否退出程序?&r")) return 0;
+				Configuring();
 				break;
 			default:
+				if (QueryFlow::YesNoQuery("&4是否退出程序?&r")) return 0;
 				break;
 			}
 			if (Configration::Config::GetConfigRef().autoSave)
@@ -241,22 +243,34 @@ namespace Hyt
 	{
 		int flag;
 		bool loop = true;
+		Configration::Config& config = Configration::Config::GetConfigRef();
 		while (loop)
 		{
 			cout << "请选择要编辑的设置项:\n";
-			flag = QueryFlow::ShowMenu("前景色\n背景色\n自动保存");
+			flag = QueryFlow::ShowMenu("前景色\n背景色\n自动保存\n退出设置");
 			switch (flag)
 			{
 			case 0:
-				//TODO
+				config.fgColor = QueryFlow::SetColor("请选择新的前景色:\n");
+				config.Init();
+				cout << "前景色已修改\n";
 				break;
-			case 1:break;
-			case 2:break;
+			case 1:
+				config.bgColor = QueryFlow::SetColor("请选择新的背景色:\n");
+				config.Init();
+				cout << "背景色已修改\n"; 
+				break;
+			case 2:
+				config.autoSave = QueryFlow::YesNoQuery("是否自动保存? 选择自动保存, 所有用户和数据的改动后都会自动保存; 设置信息不受影响\n");
+				config.Init();
+				break;
 			default:
+				loop = false;
 				break;
 			}
-		}
-		
+			
+		}		
+		config.Save(Configration::configFile);
 	}
 
 	void UserOper::UsersCenter(User*& currentUser, UserMgr& users)

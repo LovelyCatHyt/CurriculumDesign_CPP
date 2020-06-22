@@ -29,7 +29,7 @@ namespace Hyt
 		*/
 		static int DoOperations(User*& currentUser, DataMgr& data);
 	private:
-		//数据管理部分-----------------------------------------------------------------
+		//数据管理部分	-----------------------------------------------------------------
 		//数据输入
 		static void DataInput(DataMgr& data);
 		//数据搜索
@@ -42,9 +42,11 @@ namespace Hyt
 		static void ShowData(const DataMgr& data);
 		//删除数据
 		static void DeleteData(DataMgr& data);
-		//设置
+		//设置部分		-----------------------------------------------------------------
 		static void Configuring();
-		//用户管理部分-----------------------------------------------------------------
+		static void SetBgColor();
+		static void SetFgColor();
+		//用户管理部分	-----------------------------------------------------------------
 		//用户中心
 		static void UsersCenter(User*& currentUser, UserMgr& users);
 		//改密码

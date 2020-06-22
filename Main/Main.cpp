@@ -26,9 +26,9 @@ int main()
 {
 	Config& cfg = Config::GetConfigFromFile(configFile);
 	cfg.Init();
-	cout << "ï¿½ï¿½ï¿½Ã³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½.\n";
+	cout << "ÅäÖÃÒÑ³õÊ¼»¯\n";
 
-	//ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
+	//»ñÈ¡ÓÃ»§ÐÅÏ¢
 	UserMgr users = UserMgr::GetUsersFromFile(userFile);
 	UserOper::Init(&users);
 	User* currentUser = NULL;
@@ -37,7 +37,7 @@ int main()
 	
 	if (currentUser != NULL)
 	{
-		cout << ces << "&9ï¿½ï¿½Ó­" << currentUser->Name() << ces << "Ê¹ï¿½Ã±ï¿½ÏµÍ³!&r\n";
+		cout << ces << "&9»¶Ó­" << currentUser->Name() << ces << "Ê¹ÓÃ±¾ÏµÍ³!&r\n";
 		currentDataFile = currentUser->DataName();
 		DataMgr dataMgr = DataMgr::ReadFromFile(currentDataFile);
 		bool loop = true;
@@ -46,11 +46,11 @@ int main()
 			switch (UserOper::DoOperations(currentUser, dataMgr))
 			{
 			case 0:
-				//ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½
+				//Õý³£ÍË³ö
 				loop = false;
 				break;
 			case 1:
-				//ï¿½Ë³ï¿½ï¿½Ë»ï¿½
+				//×¢Ïú
 				if (!UserOper::LoginOrRegister(currentUser)) loop = false;
 				break;
 			default:
@@ -58,14 +58,11 @@ int main()
 				break;
 			}
 		}
-		cfg.Save(configFile);
-		cout << ces << "&8ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½ï¿½ï¿½\n&r";
-		
-		cout << ces << "&aï¿½ï¿½Ð»Ê¹ï¿½Ã±ï¿½ÏµÍ³!&r";
+		cout << ces << "&a¸ÐÐ»Ê¹ÓÃ±¾ÏµÍ³!&r";
 	}
 	else
 	{
-		cout << ces << "&8ÏµÍ³ï¿½ï¿½ï¿½Ë³ï¿½&r\n";
+		cout << ces << "&8ÏµÍ³ÒÑÍË³ö&r\n";
 	}
 	
 	return 0;
