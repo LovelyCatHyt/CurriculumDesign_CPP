@@ -5,7 +5,7 @@
 
 namespace Hyt
 {
-	const std::string userFile = "TestData/Users.json";
+	const std::string userFile = "Users.json";
 	//用户管理器
 	class UserMgr
 	{

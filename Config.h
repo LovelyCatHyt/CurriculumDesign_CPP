@@ -11,7 +11,7 @@ namespace Hyt
 {
 	namespace Configration
 	{
-		const string configFile = "TestData/Config.json";
+		const string configFile = "Config.json";
 		class Config
 		{
 			static Config config;
