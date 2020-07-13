@@ -13,7 +13,7 @@ extern string userFile;
 namespace Hyt
 {
 	UserMgr* UserOper::users = NULL;
-	User adminTemplate = User("Admin", "123456", "Data1.json");
+	User adminTemplate = User("Admin", "123456", "Data1.json", 0);
 	void UserOper::Init(UserMgr* usersPtr)
 	{
 		users = usersPtr;
@@ -39,14 +39,18 @@ namespace Hyt
 				cin >> name;
 				cout << "请输入密码:\n>";
 				cin >> pw;
-				cout << ces << "&8可能需要片刻进行验证, 请耐心等待!\n";
+				cout << ces << "&8可能需要片刻进行验证, 请耐心等待!&r\n";
 				users->Login(name, pw, success);
 				if (!success)
 				{
 					cout << ces << "&4用户名或密码错误!&r\n";
 					continue;
 				}
+				//赋值对应的User
 				currentUser = &users->FindUser(name, success);
+				//成功则刷新密码(必须刷新以生成正确密钥)
+				cout << ces << "&1登录成功! 正在初始化用户信息...&r\n";
+				currentUser->RefreshPw(pw);
 			}
 			break;
 		case 1:

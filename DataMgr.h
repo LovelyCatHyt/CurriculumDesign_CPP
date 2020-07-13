@@ -7,7 +7,7 @@
 using std::vector;
 using std::string;
 using nlohmann::json;
-
+extern string currentDataFile;
 namespace Hyt
 {
 	class PolyFuncData;

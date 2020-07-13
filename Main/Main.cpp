@@ -20,7 +20,7 @@ using namespace Hyt::Configration;
 
 extern const string Configration::configFile;
 extern const string Hyt::userFile;
-string currentDataFile = "";
+extern std::string currentDataFile;
 
 int main()
 {

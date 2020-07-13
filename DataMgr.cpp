@@ -10,7 +10,7 @@ using namespace Hyt::FileInOut;
 using std::cin;
 using std::cout;
 using ColorfulConsole::ces;
-extern std::string currentDataFile;
+std::string currentDataFile = "";
 
 namespace Hyt
 {

@@ -1,11 +1,13 @@
 #include "User.h"
 
-#include <random>
-
+//#include <random>
+#include <sstream>
 #include "libbcrypt/include/bcrypt/BCrypt.hpp"
 #include "AES/AES.h"
 #include "cpp-base64/base64.h"
 #include "PicoSHA2/picosha2.h"
+
+using std::stringstream;
 
 namespace Hyt
 {
@@ -33,9 +35,9 @@ namespace Hyt
 		userName(userName), pwHash(BCrypt::generateHash(pw)), dataName(dataName)
 	{
 		GenerateSecretKey(pw);
-		char temp[16];
-		_itoa_s(access, temp, 16, 10);
-		access_cipher = Encrypt(temp, secretKey);
+		stringstream str;
+		str << access<<' '; //要加上这个空格, 否则会有非常魔幻的问题出现
+		access_cipher = Encrypt(str.str(), secretKey);
 	}
 	bool User::Verify(const std::string& pw)
 	{
@@ -43,12 +45,12 @@ namespace Hyt
 	}
 	void User::RefreshPw(const std::string& pw)
 	{
-		int accessBefore = Access();
-		char temp[16];
-		_itoa_s(accessBefore, temp, 16, 10);
 		pwHash = BCrypt::generateHash(pw);
 		GenerateSecretKey(pw);
-		access_cipher = Encrypt(temp, secretKey);
+		int accessBefore = Access();
+		stringstream str;
+		str << accessBefore << ' '; //要加上这个空格, 否则会有非常魔幻的问题出现
+		access_cipher = Encrypt(str.str(), secretKey);
 	}
 	std::string User::Name()
 	{
@@ -82,15 +84,9 @@ namespace Hyt
 
 		AES aes(256);
 		unsigned char* c = aes.EncryptECB(plain, plainLen, key, outLen);
-
-		char* t = new char[(unsigned long long)outLen + 1];
-		memcpy(t, c, outLen);
-		t[outLen] = 0;
-		
-		std::string result = std::string(t);
+		std::string result = std::string((char*)c);
 		
 		delete[] c;
-		delete[] t;
 		
 		return base64_encode(result);
 	}
@@ -98,11 +94,11 @@ namespace Hyt
 	{
 		std::string chipher = base64_decode(ciphertext);
 		unsigned char* content = (unsigned char*)(chipher).c_str();
-		unsigned int contentLen = chipher.length();
+		unsigned int contentLen = chipher.size();
 		unsigned char* key = (unsigned char*)secretKey.c_str();
 
 		AES aes(256);
-		unsigned char* c = aes.DecryptECB(content, contentLen, key);
+		unsigned char* c = aes.DecryptECB(content, contentLen << 2, key);//别问, 问就是玄学
 
 		std::string result = std::string((char*)c);
 		
