@@ -4,15 +4,21 @@
 #include "UserMgr.h"
 #include "FileIO.h"
 #include "json/json.hpp"
+#include "Config.h"
 
 using ColorfulConsole::ces;
 using std::cout;
 extern std::string userFile;
+using namespace Hyt::Configration;
 
 namespace Hyt
 {
 	void UserMgr::AutoSaveIfConfigered()
 	{
+		if (Config::GetConfigRef().autoSave)
+		{
+			SaveToFile(userFile);
+		}
 	}
 	UserMgr::UserMgr() : usersList(0)
 	{

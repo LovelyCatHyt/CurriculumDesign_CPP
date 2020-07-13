@@ -27,7 +27,7 @@ namespace Hyt
 		userName(userName), pwHash(BCrypt::generateHash(pw)), dataName(dataName)
 	{
 		GenerateSecretKey(pw);
-		access_cipher = Encrypt(pw, secretKey);
+		access_cipher = Encrypt("1", secretKey);
 	}
 	User::User(const std::string& userName, const std::string& pw, const std::string& dataName, const int& access) :
 		userName(userName), pwHash(BCrypt::generateHash(pw)), dataName(dataName)
@@ -102,11 +102,11 @@ namespace Hyt
 		unsigned char* key = (unsigned char*)secretKey.c_str();
 
 		AES aes(256);
-		char* c = (char*)aes.DecryptECB(content, contentLen, key);
+		unsigned char* c = aes.DecryptECB(content, contentLen, key);
 
-		std::string result = std::string(c);
+		std::string result = std::string((char*)c);
 		
-		free(c);
+		delete[] c;
 		
 		return result;
 	}
