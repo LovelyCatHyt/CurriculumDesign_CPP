@@ -34,8 +34,18 @@ namespace Hyt
 		}
 		else
 		{
-			json j = json::parse(fileContent);
-			return j;
+			try
+			{
+				json j = json::parse(fileContent); 
+				return j;
+			}
+			catch (const json::exception e)
+			{
+				cout << ces << "&4Error: Cannot parse json file. Return default empty data.&r\n";
+				return DataMgr();
+			}
+			
+			
 		}
 	}
 	void DataMgr::Input()

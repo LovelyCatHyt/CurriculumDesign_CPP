@@ -21,12 +21,17 @@ namespace Hyt
 	{
 		try
 		{
-
-		return json::parse(FileInOut::ReadAll(fileName)).get<UserMgr>();
+			string temp = FileInOut::ReadAll(fileName);
+			if (temp.empty())
+			{
+				cout << ces << "&4Error: empty \"Users.json\" or file not exist. Return default.&r\n";
+				return UserMgr();
+			}
+			return json::parse(FileInOut::ReadAll(fileName)).get<UserMgr>();
 		}
-		catch(nlohmann::json::exception e)
+		catch(const nlohmann::json::exception e)
 		{
-			std::cout << "Excption: " << e.what() << '\n';
+			std::cout << ces << "&4json Excption: " << e.what() << ces << ", return default.&r\n";
 			return UserMgr();
 		}
 	}

@@ -13,7 +13,7 @@ extern string userFile;
 namespace Hyt
 {
 	UserMgr* UserOper::users = NULL;
-	User adminTemplate = User("Admin", "123456", "TestData/Data1.json");
+	User adminTemplate = User("Admin", "123456", "Data1.json");
 	void UserOper::Init(UserMgr* usersPtr)
 	{
 		users = usersPtr;
