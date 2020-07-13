@@ -3,8 +3,14 @@
         {
             "access_cipher": "YfvG5Aot6L0ceVJwXCiRA/39/f0=",
             "dataName": "Data1.json",
-            "pwHash": "$2a$12$wjtUxMgXwNW51QijMyZ0NuTzgAYDehc5z2utNFbvMSlp80e1Sc1tW",
+            "pwHash": "$2a$12$2tuqNkGO4cVI1ZJ.7Q90ue1R58bCMT4cYA92WuMqexXWNoV0ZGAom",
             "userName": "Admin"
+        },
+        {
+            "access_cipher": "bA09a3mgwMpbOVMWcPn9f/39/f0=",
+            "dataName": "TestUser_data.json",
+            "pwHash": "$2a$12$tFUYb.mDMhY4877/2FEnCO6akixWwuSGEdemU.fR/l04hq1ct1gTi",
+            "userName": "TestUser"
         }
     ]
 }

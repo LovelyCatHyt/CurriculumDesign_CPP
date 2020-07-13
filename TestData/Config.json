@@ -1,15 +1,15 @@
 {
     "autoSave": true,
     "bgColor": {
+        "b": true,
+        "g": true,
+        "i": true,
+        "r": true
+    },
+    "fgColor": {
         "b": false,
         "g": false,
         "i": false,
         "r": false
-    },
-    "fgColor": {
-        "b": false,
-        "g": true,
-        "i": true,
-        "r": true
     }
 }

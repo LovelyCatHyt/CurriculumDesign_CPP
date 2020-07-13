@@ -37,12 +37,13 @@ int main()
 	
 	if (currentUser != NULL)
 	{
-		cout << ces << "&9欢迎" << currentUser->Name() << ces << "使用本系统!&r\n";
-		currentDataFile = currentUser->DataName();
-		DataMgr dataMgr = DataMgr::ReadFromFile(currentDataFile);
+		
 		bool loop = true;
 		while (loop)
 		{
+			cout << ces << "&9欢迎" << currentUser->Name() << ces << "使用本系统!&r\n";
+			currentDataFile = currentUser->DataName();
+			DataMgr dataMgr = DataMgr::ReadFromFile(currentDataFile);
 			switch (UserOper::DoOperations(currentUser, dataMgr))
 			{
 			case 0:

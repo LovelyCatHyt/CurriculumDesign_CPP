@@ -155,7 +155,7 @@ namespace Hyt
 	}
 	void PolyFuncData::ShowSamples()
 	{
-		cout << name << ": " << ces('1') << samples_Y.size() << "个样本y如下:\n";
+		cout << name << ": " << ces << "&1" << samples_Y.size() << ces << "个样本y如下:&r\n";
 		PrintDataList(samples_Y);
 	}
 	void PolyFuncData::FitArgs()
