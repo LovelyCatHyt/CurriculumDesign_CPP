@@ -40,6 +40,8 @@ namespace Hyt
 		static void EditData(DataMgr& data);
 		//打印数据
 		static void ShowData(const DataMgr& data);
+		//保存数据
+		static void SaveData(const DataMgr& data);
 		//删除数据
 		static void DeleteData(DataMgr& data);
 		//设置部分		-----------------------------------------------------------------

@@ -98,7 +98,7 @@ namespace Hyt
 		unsigned char* key = (unsigned char*)secretKey.c_str();
 
 		AES aes(256);
-		unsigned char* c = aes.DecryptECB(content, contentLen << 2, key);//别问, 问就是玄学
+		unsigned char* c = aes.DecryptECB(content, contentLen << 3, key);//别问, 问就是玄学
 
 		std::string result = std::string((char*)c);
 		

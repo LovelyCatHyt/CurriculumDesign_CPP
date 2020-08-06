@@ -100,6 +100,7 @@ namespace Hyt
 				"数据拟合",
 				"编辑数据",
 				"删除数据",
+				"保存数据",
 				"用户中心",
 				"系统设置",
 				"&4退出系统" });
@@ -124,9 +125,12 @@ namespace Hyt
 				DeleteData(data);
 				break;
 			case 6:
-				UsersCenter(currentUser, *users);
+				SaveData(data);
 				break;
 			case 7:
+				UsersCenter(currentUser, *users);
+				break;
+			case 8:
 				Configuring();
 				break;
 			default:
@@ -231,6 +235,11 @@ namespace Hyt
 	void UserOper::ShowData(const DataMgr& data)
 	{
 		data.Print();
+	}
+	void UserOper::SaveData(const DataMgr& data)
+	{
+		data.SaveToFile(currentDataFile);
+		cout << ces << "&8数据已保存!\n&r";
 	}
 	void UserOper::DeleteData(DataMgr& data)
 	{
