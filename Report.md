@@ -160,7 +160,78 @@ $y=a_0+a_1\cdot x+a_2\cdot x^2+...+a_n \cdot x^n$
 
 ## 程序运行过程
 
-## 软件特色与不足
+1. 运行程序后, 以Admin登录
+
+2. 显示已有数据
+
+   ![Running_0](DocumentResources/Running_0.png)
+
+3. 新增一条数据
+   ![Running_1](DocumentResources/Running_1.png)
+
+4. 搜索一条数据
+   ![Running_2](DocumentResources/Running_2.png)
+   
+5.  生成样本数据并拟合参数
+   ![Running_3](DocumentResources/Running_3.png)
+   
+6.  编辑一个数据
+   ![Running_4](DocumentResources/Running_4.png)
+   
+7. 删除一个数据
+   ![Running_5](DocumentResources/Running_5.png)
+   
+8. 修改用户名
+   
+   ![Running_6](DocumentResources/Running_6.png) 
+   
+9. 管理员模块: 显示用户信息
+   ![Running_7](DocumentResources/Running_7.png) 
+
+10. 设置: 设置前景色为绿色
+    ![Running_8](DocumentResources/Running_8.png) 
+
+11. 设置: 设置自动保存
+    ![Running_9](DocumentResources/Running_9.png) 
+    
+12. 退出系统
+
+13. 重新打开程序, 检查变更
+    ![Running_10](DocumentResources/Running_10.png)
+
+14. 退出系统
+
+## 程序特色与不足
+
+### 特色
+
+#### 彩色文本界面
+
+- 实现了彩色的文本, 让输出内容更加丰富, 重点突出, 一定程度上消除了控制台的单调感. 
+- 实现了菜单, 让交互过程更加灵活.
+- 输入输出注意格式, 力求结构明晰, 简单易懂. 输入时在行首添加'>'字符, 区分程序输出文本和用户输入文本, 使其向标准控制台程序靠拢
+- 保留程序运行过程, 便于观察处理交互过程, 因为控制台上的文本就是天然的log, 可以降低Debug难度. 
+
+#### 高通用性的json序列化
+
+- json是许多软件常用的轻量数据表示格式, 许多文本编辑器支持对json结构进行语法高亮查看、灵活编辑、语法纠错等功能, 便于在程序外部对数据进行检查和修改
+- json对象的每个成员都由键名进行索引, 避免了对顺序敏感的序列化方式, 开发过程可以较为方便地增减成员, 而无需考虑其排列顺序. (json数组除外, 数组无字符串索引, 顺序敏感, 但这是符合通常需求的)
+- 使用已经在c++应用中广泛使用的json库, 虽然体量较庞大(2w+行), 但是可靠性和性能都得到了业界的肯定. 其文本解析能力与文本打印能力必然比自行编写的特殊数据格式解析算法要强, 减轻了从文件中解析数据的负担.
+
+#### 用户部分数据使用算法加密
+
+- 密码经过hash后保存, 避免直接保存明文
+- 用户权限用字符串记录, 使用AES对该字符串进行加密, 中间使用了base64等算法对密码进行处理, 生成与密码相关的密钥.
+
+#### 各类分工明确, 封装性高
+
+- 每一个类对应一个头文件与一个源文件, 所有公开的函数都有基本的注释, 间接约束了其具体行为
+- `PolyFuncData`类对应一个`DataMgr`类, 后者保留前者的`vector`数组, 进行宏观操作; 类似的, `User`类对应`UserMgr`类, 后者保留前者的`vector`数组. 这样的划分可以将具体的单元聚焦在单项数据的处理上, 而把多项数据的数组交给另一个类进行管理.
+- 将数据的处理编写完成后, 把各项系统功能放在`UserOper`类中管理.  最顶层的流程控制则留给main函数
+
+### 不足
+
+
 
 ## 设计体会
 

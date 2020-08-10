@@ -8,7 +8,7 @@
     },
     "fgColor": {
         "b": false,
-        "g": false,
+        "g": true,
         "i": false,
         "r": false
     }
